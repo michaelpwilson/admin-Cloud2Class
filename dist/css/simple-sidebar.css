@@ -1,3 +1,21 @@
+form h3{
+color:#2AAD0C;
+}
+.start_lesson select{
+width:30%;
+margin-left:35%;
+}
+@media(max-width:1000px){
+.active #page-content-wrapper{
+margin-left:0%;
+}
+}
+@media(max-width:850px){
+.active #page-content-wrapper{
+margin-left:20%;
+}
+}
+
 @media(max-height:900px){
 #sidebar-wrapper{
 max-height:85.3%;
@@ -13,24 +31,33 @@ border:0;
 background-color:darkblue;
 }
 .navbar-fixed-bottom{
-background: #499bea; /* Old browsers */
-background: -moz-linear-gradient(top, #499bea 0%, #207ce5 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #499bea 0%,#207ce5 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #499bea 0%,#207ce5 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #499bea 0%,#207ce5 100%); /* IE10+ */
-background: linear-gradient(to bottom, #499bea 0%,#207ce5 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 );
+background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #2AAD0C),
+	color-stop(0.83, #168754)
+);
+background-image: -o-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background-image: -moz-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background-image: -webkit-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background-image: -ms-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background-image: linear-gradient(to bottom, #2AAD0C 0%, #168754 83%);
+
 }
 .navbar{
-background: #499bea; /* Old browsers */
-background: -moz-linear-gradient(top, #499bea 0%, #207ce5 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #499bea 0%,#207ce5 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #499bea 0%,#207ce5 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #499bea 0%,#207ce5 100%); /* IE10+ */
-background: linear-gradient(to bottom, #499bea 0%,#207ce5 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 );
+background: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #2AAD0C),
+	color-stop(0.83, #168754)
+);
+background: -o-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background: -moz-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background: -webkit-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background: -ms-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background: linear-gradient(to bottom, #2AAD0C 0%, #168754 83%);
 }
 .navbar-inverse .navbar-nav > li > a {
 color:white;
@@ -80,14 +107,19 @@ background:#fff;
   overflow-x: hidden;
   z-index: 1000;
   transition: all 0.4s ease 0s;
-  background: #499bea; /* Old browsers */
-background: -moz-linear-gradient(top, #499bea 0%, #207ce5 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #499bea 0%,#207ce5 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #499bea 0%,#207ce5 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #499bea 0%,#207ce5 100%); /* IE10+ */
-background: linear-gradient(to bottom, #499bea 0%,#207ce5 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 ); /* IE6-9 */
+background: -webkit-gradient(
+        linear, 
+        left top,   
+        left bottom,
+        color-stop(0, #2AAD0C), 
+        color-stop(0.83, #168754)
+);
+background: -o-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background: -moz-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background: -webkit-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background: -ms-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
+background: linear-gradient(to bottom, #2AAD0C 0%, #168754 83%);
+
 color:white;
 }
 #sidebar-wrapper li a{

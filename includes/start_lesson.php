@@ -1,22 +1,3 @@
-<style>
-form h3{
-color:#207ce5;
-}
-.start_lesson select{
-width:30%;
-margin-left:35%;
-}
-@media(max-width:1000px){
-.active #page-content-wrapper{
-margin-left:0%;
-}
-}
-@media(max-width:850px){
-.active #page-content-wrapper{ 
-margin-left:20%;
-}
-}
-</style>
 <form action="" style="" method="post" class="start_lesson">
 <?php
 $link= mysqli_connect("cpd-db","cpd","dkfj55.1","cpd");

@@ -51,7 +51,7 @@ if ($login->messages) {
 }
 
 ?>
-<img src="docs-assets/ico/trademark-logo.png">
+<img src="views/c2c-logo.png">
 <h2 class="form-signin-heading">sign in</h2>
 <div class="login-inputs">
 <div class="input-group">
@@ -63,7 +63,7 @@ if ($login->messages) {
 <input id="login_input_password" class="form-control" placeholder="password" type="password" name="user_password" autocomplete="off" required />
 </div>
 </div>
-<button style="margin-top:10px;" name="login" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+<button style="margin-top:10px;" name="login" class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
       </form>
 
 
