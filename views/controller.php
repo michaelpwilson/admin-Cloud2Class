@@ -1,3 +1,10 @@
+<?php
+$link= mysqli_connect("cpd-db","cpd","dkfj55.1","cpd");
+$idq = 'select * from user where user_login = "' . $_SESSION['user_name'] . '"';
+$res = mysqli_query($link, $idq);
+$getid = mysqli_fetch_row($res);
+$user_id = (int)$getid[0];
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,7 +32,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-<a class="navbar-brand" href="index.php">controller</a>
+<a class="navbar-brand" href="index.php">
+<?php
+$q = 'select * FROM lesson WHERE user_id = ' . $user_id . '';
+$result = mysqli_query($link, $q);      
+
+if(mysqli_num_rows($result) >= 1){
+$getulesson = mysqli_fetch_row($result);
+$user_lesson = $getulesson[4];
+?>
+<input class="user_lesson" type="hidden" value="<?php echo $user_lesson; ?>"/>
+<?php
+}
+?>
+
+
+</a>
  </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -45,6 +67,7 @@
  </ul>
 <ul class="nav navbar-nav navbar-right">
             <li id="fat-menu" class="dropdown">
+<input type="hidden" class="session_name" value="<?php echo $_SESSION['user_name']; ?>"/>
               <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['user_name']; ?> <b class="glyphicon glyphicon-align-justify"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Login Log</a></li>

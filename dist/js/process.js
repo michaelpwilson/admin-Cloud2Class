@@ -1,4 +1,16 @@
                $(document).ready(function(){
+jQuery.fn.existsWithValue = function() { 
+    return this.length && this.val().length; 
+}
+
+if ($('.user_lesson').existsWithValue()) {
+$('.end_lesson').show();
+$('.start_lesson').hide();
+} else {
+$('.start_lesson').show();
+$('.end_lesson').hide();
+}
+
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("active");
@@ -33,10 +45,11 @@ $( ".start_lesson" ).submit(function( event ) {
   var instances=$("#example").val();
   var duration=$("#lesson_duration").val();
   var action="addcomment";
+  var user_login=$(".session_name").val();
   $.ajax({
 type:"post",
 url:"process.php",
-data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration},
+data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, user_login:user_login},
 success:function(data){
 showComment();
 $(".start_lesson").hide();
