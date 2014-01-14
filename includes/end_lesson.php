@@ -1,4 +1,4 @@
-<div class="end_lesson">
+<div style="display:none;" class="end_lesson">
  <h1>Lesson</h1>
  <h3>Started time : 13.39pm</h3>
  <h3>Finished At  : 15:10pm</h3>

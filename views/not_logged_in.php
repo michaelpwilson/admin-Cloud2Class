@@ -34,6 +34,20 @@
 <!-- login form box -->
 <form class="form-signin" method="post" action="index.php" name="loginform">
 <!-- errors & messages --->
+<img src="views/c2c-logo.png">
+<h2 class="form-signin-heading">sign in</h2>
+<hr>
+<div class="login-inputs">
+<div class="input-group">
+<span class="input-group-addon glyphicon glyphicon-user"></span>
+<input id="login_input_username" class="form-control" placeholder="username" type="text" name="user_name" required />
+</div>
+<div class="input-group">
+<span class="input-group-addon glyphicon glyphicon-ok"></span>
+<input id="login_input_password" class="form-control" placeholder="password" type="password" name="user_password" autocomplete="off" required />
+</div>
+</div>
+<button style="margin-top:10px;" name="login" class="btn btn-lg btn-success btn-block" type="submit">Go!</button>
 <?php
 
 // show negative messages
@@ -51,22 +65,6 @@ if ($login->messages) {
 }
 
 ?>
-<img src="views/c2c-logo.png">
-<h2 class="form-signin-heading">sign in</h2>
-<div class="login-inputs">
-<div class="input-group">
-<span class="input-group-addon glyphicon glyphicon-user"></span>
-<input id="login_input_username" class="form-control" placeholder="username" type="text" name="user_name" required />
-</div>
-<div class="input-group">
-<span class="input-group-addon glyphicon glyphicon-ok"></span>
-<input id="login_input_password" class="form-control" placeholder="password" type="password" name="user_password" autocomplete="off" required />
-</div>
-</div>
-<button style="margin-top:10px;" name="login" class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
-      </form>
-
-
 </form>
 </body>
 <script>

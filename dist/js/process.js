@@ -4,19 +4,15 @@
         $("#wrapper").toggleClass("active");
     });
 
-if ($('#wrapper').hasClass("active")) {
-alert();
-}
 var input = document.getElementById('example');
 
 document.getElementById('add').onclick = function(){
     input.value = parseInt(input.value, 10) +1
 }
-
 document.getElementById('subtract').onclick = function(){
     input.value = parseInt(input.value, 10) -1
 }
-                            function showComment(){
+                   function showComment(){
                       $.ajax({
                         type:"post",
                         url:"process.php",
@@ -26,23 +22,27 @@ document.getElementById('subtract').onclick = function(){
                         }
                       });
                     }
+showComment();
 
-                    showComment();
-                    $(".launch_lesson").click(function(){
+$( ".start_lesson" ).submit(function( event ) {
+  // Stop form from submitting normally
+  event.preventDefault();
+  // Get some values from elements on the page:
+  var pool=$("#pool").val();
+  var type=$("#lesson_type").val();
+  var instances=$("#example").val();
+  var duration=$("#lesson_duration").val();
+  var action="addcomment";
+  $.ajax({
+type:"post",
+url:"process.php",
+data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration},
+success:function(data){
+showComment();
+$(".start_lesson").hide();
+$(".end_lesson").show();
+ }
+});
 
-                          var name=$("#name").val();
-                          var message=$("#message").val();
-
-                          $.ajax({
-                              type:"post",
-                              url:"process.php",
-                                data:"name="+name+"&message="+message+"&action=addcomment",
-                              success:function(data){
-                                showComment();
-
-                              }
-                          });
-
-                    });
-       });
-
+ });
+ });

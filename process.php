@@ -8,16 +8,29 @@ $action=$_POST["action"];
  echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">' . $row[ttl] . '</text>';
  echo '</a></li>';
      }
+  } elseif($action=="addcomment"){
+$pool = $_POST['pool'];
+$lesson_type = $_POST['lesson_type'];
+$no_instances = $_POST['instances'];
+$lesson_duration = (int)$_POST['lesson_duration'];
+
+$query = "select user_id from user where user_login = '" . $_SESSION['user_name'] . "'";
+$result = mysqli_query($link, $query);
+$row = mysqli_fetch_row($result);
+$user_id = (int)$row[0];
+$sql = "INSERT INTO lesson VALUES (" . $user_id . ", 1, NOW(), " . $lesson_duration . ", '', 'hello', 'Bergun21', 'puppet', 'mysql', 'mount', '" . $lesson_type . "')";
+
+if (!mysqli_query($link,$sql))
+  {
+  die('Error: ' . mysqli_error($link));
   }
-else if($action=="addcomment"){
-    $name=$_POST["name"];
-    $message=$_POST["message"];
-     $query=mysql_query("INSERT INTO comment(name,message) values('$name','$message') ");
-     if($query){
-        echo "Your comment has been sent";
-     }
-     else{
-        echo "Error in sending your comment";
-     }
+$lesson_id = mysqli_insert_id($link);
+
+$anuv = "insert into instances values('unassigned', 'requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 100  . " SECOND, '', '')";
+for($i=0;$i<$no_instances;$i++){ // loop depending on the choosen amount of instances
+if (!mysqli_query($link,$anuv)) {
+  die('Error: ' . mysqli_error($link));
   }
+}
+}
 ?>
