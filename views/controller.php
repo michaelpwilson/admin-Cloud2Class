@@ -4,6 +4,8 @@ $idq = 'select * from user where user_login = "' . $_SESSION['user_name'] . '"';
 $res = mysqli_query($link, $idq);
 $getid = mysqli_fetch_row($res);
 $user_id = (int)$getid[0];
+$q = 'select * FROM lesson WHERE user_id = ' . $user_id . '';
+$result = mysqli_query($link, $q);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,18 +27,7 @@ $user_id = (int)$getid[0];
 
   <body>
 <div style="border:0;" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container" style="width:100%;">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-<a class="navbar-brand" href="index.php">
 <?php
-$q = 'select * FROM lesson WHERE user_id = ' . $user_id . '';
-$result = mysqli_query($link, $q);      
-
 if(mysqli_num_rows($result) >= 1){
 $getulesson = mysqli_fetch_row($result);
 $user_lesson = $getulesson[4];
@@ -45,9 +36,14 @@ $user_lesson = $getulesson[4];
 <?php
 }
 ?>
-
-
-</a>
+      <div class="container" style="width:100%;">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+<a class="navbar-brand" href="index.php">Controller</a>
  </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
