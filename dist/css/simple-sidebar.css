@@ -31,33 +31,18 @@ border:0;
 background-color:darkblue;
 }
 .navbar-fixed-bottom{
-background-image: -webkit-gradient(
-	linear,
-	left top,
-	left bottom,
-	color-stop(0, #2AAD0C),
-	color-stop(0.83, #168754)
-);
-background-image: -o-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background-image: -moz-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background-image: -webkit-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background-image: -ms-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background-image: linear-gradient(to bottom, #2AAD0C 0%, #168754 83%);
-
+background: -o-linear-gradient(bottom, #2AAD0C 0%, #157E1B 83%);
+background: -moz-linear-gradient(bottom, #2AAD0C 0%, #157E1B 83%);
+background: -webkit-linear-gradient(bottom, #2AAD0C 0%, #157E1B 83%);
+background: -ms-linear-gradient(bottom, #2AAD0C 0%, #157E1B 83%);
+background: linear-gradient(to bottom, #2AAD0C 0%, #157E1B 83%);
 }
 .navbar{
-background: -webkit-gradient(
-	linear,
-	left top,
-	left bottom,
-	color-stop(0, #2AAD0C),
-	color-stop(0.83, #168754)
-);
-background: -o-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background: -moz-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background: -webkit-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background: -ms-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background: linear-gradient(to bottom, #2AAD0C 0%, #168754 83%);
+background: -o-linear-gradient(bottom, #2AAD0C 0%, #157E1B 83%);
+background: -moz-linear-gradient(bottom, #2AAD0C 0%, #157E1B 83%);
+background: -webkit-linear-gradient(bottom, #2AAD0C 0%, #157E1B 83%);
+background: -ms-linear-gradient(bottom, #2AAD0C 0%, #157E1B 83%);
+background: linear-gradient(to bottom, #2AAD0C 0%, #157E1B 83%);
 }
 .navbar-inverse .navbar-nav > li > a {
 color:white;
@@ -107,20 +92,12 @@ background:#fff;
   overflow-x: hidden;
   z-index: 1000;
   transition: all 0.4s ease 0s;
-background: -webkit-gradient(
-        linear, 
-        left top,   
-        left bottom,
-        color-stop(0, #2AAD0C), 
-        color-stop(0.83, #168754)
-);
-background: -o-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background: -moz-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background: -webkit-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background: -ms-linear-gradient(bottom, #2AAD0C 0%, #168754 83%);
-background: linear-gradient(to bottom, #2AAD0C 0%, #168754 83%);
-
-color:white;
+  color:white;
+  background: -o-linear-gradient(bottom, #2AAD0C 0%, #157E1B 50%);
+  background: -moz-linear-gradient(bottom, #2AAD0C 0%, #157E1B 50%);
+  background: -webkit-linear-gradient(bottom, #2AAD0C 0%, #157E1B 50%);
+  background: -ms-linear-gradient(bottom, #2AAD0C 0%, #157E1B 50%);
+  background: linear-gradient(to bottom, #2AAD0C 0%, #157E1B 50%);
 }
 #sidebar-wrapper li a{
 padding-top:7px;

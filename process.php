@@ -1,5 +1,6 @@
 <?php
 $link = mysqli_connect("cpd-db", "cpd", "dkfj55.1", "cpd");
+$user_login = $_POST['user_login'];
 $action=$_POST["action"];
 	if($action=="showcomment"){
      $show=mysqli_query($link, "Select * from instances order by ttl desc");
@@ -13,8 +14,6 @@ $pool = $_POST['pool'];
 $lesson_type = $_POST['lesson_type'];
 $no_instances = $_POST['instances'];
 $lesson_duration = (int)$_POST['lesson_duration'];
-$user_login = $_POST['user_login'];
-var_dump($user_login);
 $query = "select user_id from user where user_login = '" . $user_login . "'";
 $result = mysqli_query($link, $query);
 $row = mysqli_fetch_row($result);
@@ -27,7 +26,7 @@ if (!mysqli_query($link,$sql))
   die('Error: ' . mysqli_error($link));
   }
 $lesson_id = mysqli_insert_id($link);
-
+echo($lesson_id);
 $anuv = "insert into instances values('unassigned', 'requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 100  . " SECOND, '', '')";
 for($i=0;$i<$no_instances;$i++){ // loop depending on the choosen amount of instances
 if (!mysqli_query($link,$anuv)) {

@@ -24,16 +24,16 @@ document.getElementById('add').onclick = function(){
 document.getElementById('subtract').onclick = function(){
     input.value = parseInt(input.value, 10) -1
 }
-                   function showComment(){
-                      $.ajax({
-                        type:"post",
-                        url:"process.php",
-                        data:"action=showcomment",
-                        success:function(data){
-                             $("#comment").html(data);
-                        }
-                      });
-                    }
+  function showComment(){
+  $.ajax({
+     type:"post",
+     url:"process.php",
+     data:"action=showcomment",
+     success:function(data){
+         $("#comment").html(data);
+     }
+  });
+  }
 showComment();
 
 $( ".start_lesson" ).submit(function( event ) {
@@ -52,8 +52,16 @@ url:"process.php",
 data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, user_login:user_login},
 success:function(data){
 showComment();
-$(".start_lesson").hide();
-$(".end_lesson").show();
+  $.ajax({
+     type:"post",
+     url:"includes/end_lesson.php",
+     data:{user_lesson: data},
+     success:function(lesson){
+     $(".start_lesson").hide();
+     $(".end_lesson").show();
+     $(".holder").html(lesson);
+     }
+  });
  }
 });
 
