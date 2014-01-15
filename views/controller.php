@@ -19,7 +19,7 @@ $result = mysqli_query($link, $q);
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
-
+    <link href="dist/css/TimeCircles.css" rel="stylesheet">
     <!-- Add custom CSS here -->
     <link href="dist/css/simple-sidebar.css" rel="stylesheet">
     <link href="dist/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -106,5 +106,6 @@ $user_lesson = $getulesson[4];
   </body>
 <script src="dist/js/jquery.min.js"></script>
 <script type="text/javascript" src="dist/js/process.js"></script>
+<script src="dist/js/TimeCircles.js"></script>
 <script src="dist/js/bootstrap.js"></script>
 </html>

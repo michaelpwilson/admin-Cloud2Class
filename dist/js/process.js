@@ -1,4 +1,7 @@
-               $(document).ready(function(){
+$(document).ready(function(){
+$("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
+$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
+
 jQuery.fn.existsWithValue = function() { 
     return this.length && this.val().length; 
 }
@@ -60,7 +63,7 @@ showComment();
      $(".start_lesson").hide();
      $(".end_lesson").show();
      $(".holder").html(lesson);
-     }
+ }
   });
  }
 });

@@ -27,7 +27,7 @@ if (!mysqli_query($link,$sql))
   }
 $lesson_id = mysqli_insert_id($link);
 echo($lesson_id);
-$anuv = "insert into instances values('unassigned', 'requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 100  . " SECOND, '', '')";
+$anuv = "insert into instances values('unassigned', 'requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 60  . " SECOND, '', '')";
 for($i=0;$i<$no_instances;$i++){ // loop depending on the choosen amount of instances
 if (!mysqli_query($link,$anuv)) {
   die('Error: ' . mysqli_error($link));
