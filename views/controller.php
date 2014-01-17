@@ -28,7 +28,7 @@ $result = mysqli_query($link, $q);
   <body>
 <div style="border:0;" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 <?php
-if(mysqli_num_rows($result) >= 1){
+if(mysqli_num_rows($result) == 1){
 $getulesson = mysqli_fetch_row($result);
 $user_lesson = $getulesson[4];
 ?>
