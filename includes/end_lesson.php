@@ -47,7 +47,7 @@ echo "<br>lesson ended, now for cpd to abolish instances and lesson";
 }
 ?>   
 </h3>
-<div style=""><div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } ?>" data-timer="<?php echo date("i:s", $diff) * 60; ?>" style="width:361px; height: 180px; margin-left:auto; margin-right:auto;"></div></div>
+<div style=""><div id="CountDownTimer<?php if ($diff < 60) { echo "Hourly"; } ?>" data-timer="<?php echo date("i:s", $diff) * 60; ?>" style="width:361px; height: 180px; margin-left:auto; margin-right:auto;"></div></div>
 
   <button type="button" class="btn btn-primary" data-toggle="button">give me 30 more minutes</button>
   <button type="button" class="btn btn-danger" data-toggle="button">end</button>

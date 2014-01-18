@@ -2,6 +2,11 @@ $(document).ready(function(){
 $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
 $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
 
+function endLesson() {
+    $.get("set_ttl.php");
+    return false;
+}
+
 jQuery.fn.existsWithValue = function() { 
     return this.length && this.val().length; 
 }
@@ -27,16 +32,6 @@ document.getElementById('add').onclick = function(){
 document.getElementById('subtract').onclick = function(){
     input.value = parseInt(input.value, 10) -1
 }
-  function showComment(){
-  $.ajax({
-     type:"post",
-     url:"process.php",
-     data:"action=showcomment",
-     success:function(data){
-         $("#comment").html(data);
-     }
-  });
-  }
 showComment();
 
 $( ".start_lesson" ).submit(function( event ) {
@@ -69,4 +64,15 @@ showComment();
 });
 
  });
+  function showComment(){
+$.ajax({
+     type:"post",
+     url:"process.php",
+     data:"action=showcomment",
+     success:function(data){
+         $("#comment").html(data);
+     }
+  });
+alert("Hello");
+  }
  });
