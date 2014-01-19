@@ -13,14 +13,16 @@ echo '<b class="glyphicon glyphicon-tasks" style="color:red; font-size:28px; pos
 }
 if($row[instance_state] == 'In Use'){
 echo '<b class="glyphicon glyphicon-tasks" style="font-size:28px; position:relative; top:13px; right:25px;"></b>';
+} elseif($row[instance_state] == 'Launching'){
+echo '<b class="glyphicon glyphicon-tasks" style="color:blue; font-size:28px; position:relative; top:13px; right:25px;"></b>';
 }
-
  echo '<text style="font-weight:bold; padding-left:5px;">' . $row[instance_name] . '</text><text class="pull-right" id="instance_state" style="padding-right:15px; font-size:11px;">' . $row[instance_state] . '</text>';
- echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">' . date("H:i:s", $row[ttl]) . '</text>';
+ echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">' . date("H:i", $row[ttl]) . '</text>';
  echo '</a></li>';
      }
   } elseif($action=="addcomment"){
 $pool = $_POST['pool'];
+var_dump($pool);
 $lesson_type = $_POST['lesson_type'];
 $no_instances = $_POST['instances'];
 $lesson_duration = (int)$_POST['lesson_duration'];

@@ -2,6 +2,21 @@ $(document).ready(function(){
 $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
 $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
 
+$("#end_lesson").click(function(){
+  var user_lesson=$(".user_lesson").val();
+  $.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{user_lesson: user_lesson},
+     success:function(data){
+alert(data);
+ }   
+  });
+
+
+
+});
+
 jQuery.fn.existsWithValue = function() { 
     return this.length && this.val().length; 
 }
