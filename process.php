@@ -5,7 +5,17 @@ $action=$_POST["action"];
 	if($action=="showcomment"){
      $show=mysqli_query($link, "Select * from instances order by ttl desc");
      while($row = mysqli_fetch_array($show)){
-        echo '<li style="border-bottom:1px solid #eee;"><a href="#"><b class="glyphicon glyphicon-tasks" style="color:#47a447; font-size:28px; position:relative; top:13px; right:25px;"></b><text style="font-weight:bold; padding-left:5px;">' . $row[instance_name] . '</text><text class="pull-right" style="padding-right:15px; font-size:11px;">' . $row[instance_state] . '</text>';
+        echo '<li style="border-bottom:1px solid #eee;"><a href="#">';
+if($row[instance_state] == 'Ready'){        
+echo '<b class="glyphicon glyphicon-tasks" style="color:green; font-size:28px; position:relative; top:13px; right:25px;"></b>';
+} elseif($row[instance_state] == 'Failed' || $row[instance_state] == 'Shutting Down'){
+echo '<b class="glyphicon glyphicon-tasks" style="color:red; font-size:28px; position:relative; top:13px; right:25px;"></b>';
+}
+if($row[instance_state] == 'In Use'){
+echo '<b class="glyphicon glyphicon-tasks" style="font-size:28px; position:relative; top:13px; right:25px;"></b>';
+}
+
+ echo '<text style="font-weight:bold; padding-left:5px;">' . $row[instance_name] . '</text><text class="pull-right" id="instance_state" style="padding-right:15px; font-size:11px;">' . $row[instance_state] . '</text>';
  echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">' . date("H:i:s", $row[ttl]) . '</text>';
  echo '</a></li>';
      }
