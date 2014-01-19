@@ -9,7 +9,7 @@ $row = mysqli_fetch_row($res);
 $started = $row[2];
 $minutes = $row[3];
 ?>
- <h1>Lesson</h1>
+ <h1>Lesson <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
  <h3>Started time:<br> <?php echo date("H:i", strtotime($started)); ?></h3>
  <h3>Finishes At:<br>
 <?php
@@ -27,10 +27,10 @@ echo "<br>lesson ended, now for cpd to abolish instances and lesson";
 }
 ?>
 </h3>
-<div style=""><div id="CountDownTimer<?php if ($diff < 60) { echo "Hourly"; } ?>" data-timer="<?php echo date("i:s", $diff) * 60; ?>" style="width:361px; height: 180px; margin-left:auto; margin-right:auto;"></div></div>
+<div style=""><div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } ?>" data-timer="<?php echo $diff; ?>" style="width:361px; height: 180px; margin-left:auto; margin-right:auto;"></div></div>
 
-  <button type="button" class="btn btn-primary" data-toggle="button">give me 30 more minutes</button>
-  <button type="button" class="btn btn-danger" data-toggle="button">end</button>
+  <button type="button" class="btn btn-primary" id="giveme" data-toggle="button">give me 30 more minutes</button>
+  <button type="submit" class="btn btn-danger" id="end_lesson" data-toggle="button">end</button>
 </div>
 <?php
 } elseif(isset($user_lesson)){
@@ -40,7 +40,7 @@ $row = mysqli_fetch_row($res);
 $started = $row[2];
 $minutes = (int)$row[3];
 ?>
- <h1>Lesson</h1>
+ <h1>Lesson <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
  <h3>Started time:<br> <?php echo date("H:i", strtotime($started)); ?></h3>
  <h3>Finishes At:<br>
 <?php
@@ -60,7 +60,7 @@ echo "<br>lesson ended, now for cpd to abolish instances and lesson";
 </h3>
 <div style=""><div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } ?>" data-timer="<?php echo $diff; ?>" style="width:361px; height: 180px; margin-left:auto; margin-right:auto;"></div></div>
 
-  <button type="button" class="btn btn-primary" data-toggle="button">give me 30 more minutes</button>
+  <button type="button" class="btn btn-primary" id="giveme" data-toggle="button">give me 30 more minutes</button>
   <button type="submit" class="btn btn-danger" id="end_lesson" data-toggle="button">end</button>
 </div>
 <?php

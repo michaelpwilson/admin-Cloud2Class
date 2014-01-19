@@ -2,7 +2,7 @@
 $link = mysqli_connect("cpd-db", "cpd", "dkfj55.1", "cpd");
 $user_login = $_POST['user_login'];
 $action=$_POST["action"];
-	if($action=="showcomment"){
+        if($action=="showcomment"){
      $show=mysqli_query($link, "Select * from instances order by ttl desc");
      while($row = mysqli_fetch_array($show)){
         echo '<li style="border-bottom:1px solid #eee;"><a href="#">';
@@ -21,8 +21,11 @@ echo '<b class="glyphicon glyphicon-tasks" style="color:blue; font-size:28px; po
  echo '</a></li>';
      }
   } elseif($action=="addcomment"){
+
 $pool = $_POST['pool'];
-var_dump($pool);
+$resa = mysqli_query($link, "SELECT pool_id FROM pool WHERE pool_ref = '{$pool}'");
+$rw = mysqli_fetch_row($resa);
+$pool_id = (int)$rw[0];
 $lesson_type = $_POST['lesson_type'];
 $no_instances = $_POST['instances'];
 $lesson_duration = (int)$_POST['lesson_duration'];
@@ -31,8 +34,7 @@ $result = mysqli_query($link, $query);
 $row = mysqli_fetch_row($result);
 $user_id = (int)$row[0];
 
-$sql = "INSERT INTO lesson (user_id, pool_id, lesson_start, duration, instance_type) VALUES ({$user_id}, 1, NOW(), {$lesson_duration}, '{$lesson_type}')";
-var_dump($sql);
+$sql = "INSERT INTO lesson (user_id, pool_id, lesson_start, duration, instance_type) VALUES ({$user_id}, {$pool_id}, NOW(), {$lesson_duration}, '{$lesson_type}')";
 
 if (!mysqli_query($link,$sql))
   {

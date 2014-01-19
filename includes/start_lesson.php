@@ -31,7 +31,7 @@ while($row = mysqli_fetch_row($res)){
 ?>
 </select> 
 <h3>number of instances:</h3>
-<a href="#"><i class="glyphicon glyphicon-chevron-left" id="subtract"></i></a><input style="border:0; width:5%; font-size:28px;" id="example" name="instances" type="text" value="20" /><a href="#"><i id="add" class="glyphicon glyphicon-chevron-right"></i></a>
+<a href="#"><i class="glyphicon glyphicon-chevron-left" id="subtract"></i></a><input style="border:0; width:5%; font-size:28px;" id="example" name="instances" type="text" value="7"/><a href="#"><i id="add" class="glyphicon glyphicon-chevron-right"></i></a>
 <h3>duration of lesson:</h3>
 <select name="lesson_duration" id="lesson_duration" class="lesson-dropdown form-control">
   <option value="30">30 minutes</option>

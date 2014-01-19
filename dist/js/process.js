@@ -4,10 +4,11 @@ $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
 
 $("#end_lesson").click(function(){
   var user_lesson=$(".user_lesson").val();
-  $.ajax({
+  var end = "end";  
+$.ajax({
      type:"post",
      url:"ending.php",
-     data:{user_lesson: user_lesson},
+     data:{action:end, user_lesson: user_lesson},
      success:function(data){
 $(".end_lesson").hide();
 $(".start_lesson").show();
@@ -16,6 +17,23 @@ showComment();
   });
 
 });
+
+$("#giveme").click(function(){
+  var user_lesson=$(".user_lesson").val();
+  var give = "give"; 
+$.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{action:give, user_lesson: user_lesson},
+     success:function(data){
+alert(data);
+showComment();
+ }
+  });
+
+});
+
+
 
 jQuery.fn.existsWithValue = function() { 
     return this.length && this.val().length; 
@@ -48,7 +66,7 @@ $( ".start_lesson" ).submit(function( event ) {
   // Stop form from submitting normally
   event.preventDefault();
   // Get some values from elements on the page:
-  var pool=$("#pool").val();
+  var pool= $("input:radio[name ='pool']:checked").val();
   var type=$("#lesson_type").val();
   var instances=$("#example").val();
   var duration=$("#lesson_duration").val();
@@ -82,6 +100,7 @@ $.ajax({
      data:"action=showcomment",
      success:function(data){
          $("#comment").html(data);
+	alert(data);
      }
   });
   }
