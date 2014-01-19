@@ -9,11 +9,11 @@ $("#end_lesson").click(function(){
      url:"ending.php",
      data:{user_lesson: user_lesson},
      success:function(data){
-alert(data);
+$(".end_lesson").hide();
+$(".start_lesson").show();
+showComment();
  }   
   });
-
-
 
 });
 
