@@ -8,8 +8,16 @@ if (mysqli_connect_errno())
 ?>
 <h1>Create a Lesson <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
 <hr>
-<h3>choose a pool:</h3>
-<input type="radio" value="demo" id="pool" name="pool"/> demo
+<h3>choose a slot:</h3>
+<?php
+$q = "select pool_ref from pool";
+$res = mysqli_query($link, $q);
+while($row = mysqli_fetch_row($res)){
+?>
+<input type="radio" value="<?php echo $row[0]; ?>" id="pool" name="pool"/><?php echo $row[0]; ?><br>
+<?php
+}
+?>
 <h3>type of machine:</h3>
 <select name="lesson_type" class="lesson-dropdown form-control">
 <?php

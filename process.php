@@ -19,15 +19,18 @@ $result = mysqli_query($link, $query);
 $row = mysqli_fetch_row($result);
 $user_id = (int)$row[0];
 
-$sql = "INSERT INTO lesson VALUES (" . $user_id . ", 1, NOW(), " . $lesson_duration . ", '', 'hello', 'Bergun21', 'puppet', 'mysql', 'mount', '" . $lesson_type . "')";
+$sql = "INSERT INTO lesson (user_id, pool_id, lesson_start, duration, instance_type) VALUES ({$user_id}, 1, NOW(), {$lesson_duration}, '{$lesson_type}')";
+var_dump($sql);
 
 if (!mysqli_query($link,$sql))
   {
   die('Error: ' . mysqli_error($link));
   }
 $lesson_id = mysqli_insert_id($link);
-echo($lesson_id);
-$anuv = "insert into instances values('unassigned', 'requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 60  . " SECOND, '', '')";
+
+$anuv = "insert into instances (instance_name, instance_state, instance_type, lesson_id, ttl) values('unassigned', 'requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 60  . " SECOND)";
+var_dump($anuv, $lesson_id);
+
 for($i=0;$i<$no_instances;$i++){ // loop depending on the choosen amount of instances
 if (!mysqli_query($link,$anuv)) {
   die('Error: ' . mysqli_error($link));

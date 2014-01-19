@@ -2,11 +2,6 @@ $(document).ready(function(){
 $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
 $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
 
-function endLesson() {
-    $.get("set_ttl.php");
-    return false;
-}
-
 jQuery.fn.existsWithValue = function() { 
     return this.length && this.val().length; 
 }
@@ -49,6 +44,7 @@ type:"post",
 url:"process.php",
 data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, user_login:user_login},
 success:function(data){
+alert(data);
 showComment();
   $.ajax({
      type:"post",
@@ -73,6 +69,5 @@ $.ajax({
          $("#comment").html(data);
      }
   });
-alert("Hello");
   }
  });
