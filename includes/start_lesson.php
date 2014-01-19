@@ -10,12 +10,23 @@ if (mysqli_connect_errno())
 <hr>
 <h3>choose a slot:</h3>
 <?php
-$q = "select pool_ref from pool";
+$q = "select * from pool order by pool_ref asc";
 $res = mysqli_query($link, $q);
 while($row = mysqli_fetch_row($res)){
+if ($result = mysqli_query($link, "SELECT * FROM instances where pool_ref = '{$row[2]}'")) {
+
+    /* determine number of rows result set */
+    $row_cnt = mysqli_num_rows($result);
+if($row_cnt > 0){
 ?>
-<input type="radio" value="<?php echo $row[0]; ?>" id="pool" name="pool"/><?php echo $row[0]; ?><br>
+<div class="btn btn-success" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px; "><a style="color:white" value="<?php echo $row[2]; ?>"><b class="glyphicon glyphicon-user"></b><?php echo $row[2]; ?></a></div><br>
 <?php
+}elseif($row_cnt < 1){
+?>
+<div class="btn btn-primary" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px;"><input type="radio" value="<?php echo $row[2]; ?>" id="pool" name="pool"/><?php echo $row[2]; ?></div><br>
+<?php
+}
+}
 }
 ?>
 <h3>type of machine:</h3>

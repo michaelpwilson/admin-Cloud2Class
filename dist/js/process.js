@@ -26,7 +26,6 @@ $.ajax({
      url:"ending.php",
      data:{action:give, user_lesson: user_lesson},
      success:function(data){
-alert(data);
 showComment();
  }
   });
@@ -77,7 +76,6 @@ type:"post",
 url:"process.php",
 data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, user_login:user_login},
 success:function(data){
-alert(data);
 showComment();
   $.ajax({
      type:"post",
@@ -100,7 +98,6 @@ $.ajax({
      data:"action=showcomment",
      success:function(data){
          $("#comment").html(data);
-	alert(data);
      }
   });
   }
