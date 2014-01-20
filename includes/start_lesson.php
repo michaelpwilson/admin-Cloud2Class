@@ -8,6 +8,7 @@ if (mysqli_connect_errno())
 ?>
 <h1>Create a Lesson <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
 <hr>
+<div class="pool-buttons">
 <h3>choose a slot:</h3>
 <?php
 $q = "select * from pool order by pool_ref asc";
@@ -29,6 +30,8 @@ if($row_cnt > 0){
 }
 }
 ?>
+</div>
+<div class="bottom-half" style="display:none;">
 <h3>type of machine:</h3>
 <select id="lesson_type" name="lesson_type" class="lesson-dropdown form-control">
 <?php
@@ -50,4 +53,5 @@ while($row = mysqli_fetch_row($res)){
   <option value="90">90 minutes</option>
 </select>
 <input type="submit" name="lesson_go" value="Go!" style="margin-top:15px" class="btn-success btn btn-lg"/>
+</div>
 </form>

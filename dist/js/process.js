@@ -2,6 +2,15 @@ $(document).ready(function(){
 $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
 $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
 
+$('.btn-primary').click(function() {
+ if (!$("input[name='pool']:checked").val()) { 
+return false; 
+} else { 
+$(".pool-buttons").fadeOut();
+$(".bottom-half").fadeIn();
+}
+});
+
 $("#end_lesson").click(function(){
   var user_lesson=$(".user_lesson").val();
   var end = "end";  
@@ -32,6 +41,17 @@ showComment();
 
 });
 
+$(".btn-success a").click(function(){
+  var pool=$(this).text();
+$.ajax({
+     type:"post",
+     url:"includes/end_lesson.php",
+     data:{pool_ref: pool},
+     success:function(data){
+showComment();
+ }
+  });
+});
 
 
 jQuery.fn.existsWithValue = function() { 

@@ -188,11 +188,11 @@ background:#fff;
 
 #wrapper.active {
   position: relative;
-  right: 250px;
+  right: 293px;
 }
 
 #wrapper.active #sidebar-wrapper {
-  right: 250px;
+  right: 293px;
   width: 250px;
   transition: all 0.4s ease 0s;
 }
