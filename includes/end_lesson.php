@@ -4,7 +4,7 @@ $link= mysqli_connect("cpd-db","cpd","dkfj55.1","cpd");
 $user_lesson_ajax = $_POST['user_lesson'];
 if(isset($user_lesson_ajax)){
 $q = "select * from lesson where lesson_id = {$user_lesson_ajax}";
-var_dump($user_lesson_ajax);
+var_dump($_POST['pool_ref']);
 $res = mysqli_query($link, $q); 
 $row = mysqli_fetch_row($res);
 $started = $row[2];

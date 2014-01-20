@@ -16,6 +16,9 @@ echo '<b class="glyphicon glyphicon-tasks" style="font-size:28px; position:relat
 } elseif($row[instance_state] == 'Launching'){
 echo '<b class="glyphicon glyphicon-tasks" style="color:blue; font-size:28px; position:relative; top:13px; right:25px;"></b>';
 }
+if($row[instance_state] == 'Requested'){
+echo '<b class="glyphicon glyphicon-tasks" style="color:#eee; font-size:28px; position:relative; top:13px; right:25px;"></b>';
+}
  echo '<text style="font-weight:bold; padding-left:5px;">' . $row[instance_name] . '</text><text class="pull-right" id="instance_state" style="padding-right:15px; font-size:11px;">' . $row[instance_state] . '</text>';
  echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">' . date("H:i", strtotime($row[ttl])) . '</text>';
  echo '</a></li>';
@@ -34,7 +37,7 @@ $result = mysqli_query($link, $query);
 $row = mysqli_fetch_row($result);
 $user_id = (int)$row[0];
 
-$sql = "INSERT INTO lesson (user_id, pool_id, lesson_start, duration, instance_type) VALUES ({$user_id}, {$pool_id}, NOW(), {$lesson_duration}, '{$lesson_type}')";
+$sql = "INSERT INTO lesson (user_id, pool_id, lesson_start, duration, mounts, instance_type) VALUES ({$user_id}, {$pool_id}, NOW(), {$lesson_duration}, 'uploads:resources', '{$lesson_type}')";
 
 if (!mysqli_query($link,$sql))
   {

@@ -1,124 +1,116 @@
-$(document).ready(function(){
-$("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
-$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
+  $(document).ready(function(){
+	$("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
+	$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
 
-$('.btn-primary').click(function() {
- if (!$("input[name='pool']:checked").val()) { 
-return false; 
-} else { 
-$(".pool-buttons").fadeOut();
-$(".bottom-half").fadeIn();
-}
-});
-
-$("#end_lesson").click(function(){
-  var user_lesson=$(".user_lesson").val();
-  var end = "end";  
-$.ajax({
-     type:"post",
-     url:"ending.php",
-     data:{action:end, user_lesson: user_lesson},
-     success:function(data){
-$(".end_lesson").hide();
-$(".start_lesson").show();
-showComment();
- }   
+  $('.btn-primary').click(function() {
+  if (!$("input[name='pool']:checked").val()) { 
+   return false; 
+  } else { 
+   $(".pool-buttons").fadeOut();
+   $(".bottom-half").fadeIn();
+  }
   });
 
-});
+  $("#end_lesson").click(function(){
+   var user_lesson=$(".user_lesson").val();
+   var end = "end";  
+  $.ajax({
+    type:"post",
+    url:"ending.php",
+    data:{action:end, user_lesson: user_lesson},
+    success:function(data){
+      $(".end_lesson").hide();
+      $(".start_lesson").show();
+      showComment();
+  }   
+  });
 
-$("#giveme").click(function(){
-  var user_lesson=$(".user_lesson").val();
-  var give = "give"; 
-$.ajax({
+  });
+
+  $("#giveme").click(function(){
+    var user_lesson=$(".user_lesson").val();
+    var give = "give"; 
+   $.ajax({
      type:"post",
      url:"ending.php",
      data:{action:give, user_lesson: user_lesson},
      success:function(data){
-showComment();
- }
+     showComment();
+     }
+     });
+   });
+
+  $(".btn-success a").click(function(){
+    var pool=$(this).text();
+   $.ajax({
+    type:"post",
+    url:"includes/end_lesson.php",
+    data:{pool_ref: pool},
+    success:function(data){
+    showComment();
+    alert(data);
+   }
+  });
   });
 
-});
-
-$(".btn-success a").click(function(){
-  var pool=$(this).text();
-$.ajax({
-     type:"post",
-     url:"includes/end_lesson.php",
-     data:{pool_ref: pool},
-     success:function(data){
-showComment();
- }
-  });
-});
-
-
-jQuery.fn.existsWithValue = function() { 
+  jQuery.fn.existsWithValue = function() { 
     return this.length && this.val().length; 
-}
+  }
 
-if ($('.user_lesson').existsWithValue()) {
-$('.end_lesson').show();
-$('.start_lesson').hide();
-} else {
-$('.start_lesson').show();
-$('.end_lesson').hide();
-}
-
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
     });
 
-var input = document.getElementById('example');
+  var input = document.getElementById('example');
 
-document.getElementById('add').onclick = function(){
+  document.getElementById('add').onclick = function(){
     input.value = parseInt(input.value, 10) +1
-}
-document.getElementById('subtract').onclick = function(){
+    }
+  document.getElementById('subtract').onclick = function(){
     input.value = parseInt(input.value, 10) -1
-}
-showComment();
+    }
+  
+  showComment();
 
-$( ".start_lesson" ).submit(function( event ) {
-  // Stop form from submitting normally
-  event.preventDefault();
-  // Get some values from elements on the page:
-  var pool= $("input:radio[name ='pool']:checked").val();
-  var type=$("#lesson_type").val();
-  var instances=$("#example").val();
-  var duration=$("#lesson_duration").val();
-  var action="addcomment";
-  var user_login=$(".session_name").val();
+  $( ".start_lesson" ).submit(function( event ) {
+    // Stop form from submitting normally
+    event.preventDefault();
+    // Get some values from elements on the page:
+    var pool= $("input:radio[name ='pool']:checked").val();
+    var type=$("#lesson_type").val();
+    var instances=$("#example").val();
+    var duration=$("#lesson_duration").val();
+    var action="addcomment";
+    var user_login=$(".session_name").val();
+   $.ajax({
+    type:"post",
+    url:"process.php",
+    data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, user_login:user_login},
+    success:function(data){
+    showComment();
   $.ajax({
-type:"post",
-url:"process.php",
-data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, user_login:user_login},
-success:function(data){
-showComment();
-  $.ajax({
-     type:"post",
-     url:"includes/end_lesson.php",
-     data:{user_lesson: data},
-     success:function(lesson){
-     $(".start_lesson").hide();
-     $(".end_lesson").show();
-     $(".holder").html(lesson);
- }
-  });
- }
-});
+    type:"post",
+    url:"includes/end_lesson.php",
+    data:{user_lesson: data},
+    success:function(lesson){
+    $(".start_lesson").hide();
+    $(".end_lesson").show();
+    $(".holder").html(lesson);
+   }
+   });
+  }
+ });
 
  });
   function showComment(){
-$.ajax({
-     type:"post",
-     url:"process.php",
-     data:"action=showcomment",
-     success:function(data){
-         $("#comment").html(data);
-     }
+  $.ajax({
+    type:"post",
+    url:"process.php",
+    data:"action=showcomment",
+    success:function(data){
+     $("#comment").html(data);
+    }
   });
-  }
+ }
  });
