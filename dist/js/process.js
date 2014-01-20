@@ -11,35 +11,6 @@
   }
   });
 
-  $("#end_lesson").click(function(){
-   var user_lesson=$(".user_lesson").val();
-   var end = "end";  
-  $.ajax({
-    type:"post",
-    url:"ending.php",
-    data:{action:end, user_lesson: user_lesson},
-    success:function(data){
-      $(".end_lesson").hide();
-      $(".start_lesson").show();
-      showComment();
-  }   
-  });
-
-  });
-
-  $("#giveme").click(function(){
-    var user_lesson=$(".user_lesson").val();
-    var give = "give"; 
-   $.ajax({
-     type:"post",
-     url:"ending.php",
-     data:{action:give, user_lesson: user_lesson},
-     success:function(data){
-     showComment();
-     }
-     });
-   });
-
   $(".btn-success a").click(function(){
     var pool=$(this).text();
    $.ajax({
@@ -48,9 +19,39 @@
     data:{pool_ref: pool},
     success:function(data){
     showComment();
-    alert(data);
+    $(".holder").html(data);
+    $( "#end_lesson" ).click(function() {
+    var pool_ref = $("#pool_ref").val();    
+    var end = "end";
+   $.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{action:end, pool_ref: pool_ref},
+     success:function(data){
+     showComment();
+	location.reload();
+     }
+     });
+
+
+    });
+
    }
   });
+  $("#giveme").click(function(){
+    var pool_ref=$("#pool_ref").val();
+    var give = "give";
+   $.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{action:give, pool_ref: pool_ref},
+     success:function(data){
+     alert(data);
+	showComment();
+     }
+     });
+   });
+
   });
 
   jQuery.fn.existsWithValue = function() { 
@@ -92,8 +93,9 @@
   $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
-    data:{user_lesson: data},
+    data:{pool_ref: data},
     success:function(lesson){
+    alert(lesson);
     $(".start_lesson").hide();
     $(".end_lesson").show();
     $(".holder").html(lesson);
