@@ -1,4 +1,7 @@
   $(document).ready(function(){
+ $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
+    $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
+
   $('.btn-primary').click(function() {
   if (!$("input[name='pool']:checked").val()) { 
    return false; 
@@ -10,15 +13,15 @@
 
   $(".btn-success a").click(function(){
     var pool=$(this).text();
-   $.ajax({
+  $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
     data:{pool_ref: pool},
     success:function(data){
     showComment();
-    $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
-    $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
     $(".holder").html(data);
+   $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
+   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
     $( "#end_lesson" ).click(function() {
     var pool_ref = $("#pool_ref").val();    
     var end = "end";
@@ -29,7 +32,8 @@
      success:function(data){
      showComment();
 	location.reload();
-     }
+     
+	}
      });
 
 
@@ -94,7 +98,6 @@
     url:"includes/end_lesson.php",
     data:{pool_ref: pool},
     success:function(lesson){
-    alert(lesson);
     $(".start_lesson").hide();
     $(".end_lesson").show();
     $(".holder").html(lesson);

@@ -41,6 +41,7 @@ if($diff < 1){
 }
 ?>
 </div>
+<div id="CountDownTimer" data-timer="<?php echo $diff; ?>" id="countdown" style="display:none"></div>
 <div class="bottom-half" style="display:none;">
 <h3>type of machine:</h3>
 <select id="lesson_type" name="lesson_type" class="lesson-dropdown form-control">

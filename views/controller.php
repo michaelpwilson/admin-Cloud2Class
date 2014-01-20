@@ -4,8 +4,6 @@
    $res = mysqli_query($link, $idq);
    $getid = mysqli_fetch_row($res);
    $user_id = (int)$getid[0];
-   $q = 'select * FROM lesson WHERE user_id = ' . $user_id . '';
-   $result = mysqli_query($link, $q);
   ?>
   <!DOCTYPE html>
    <html lang="en">
@@ -24,16 +22,6 @@
   </head>
  <body>
    <div style="border:0;" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-  <?php
- if(mysqli_num_rows($result) == 1){
-   $getulesson = mysqli_fetch_row($result);
-   $user_lesson = $getulesson[4];
-  ?>
-  <input class="user_lesson" type="hidden" value="<?php echo $user_lesson; ?>"/>
-  <?php
-  }
-  ?>
-
   <div class="container" style="width:100%;">
      <div class="navbar-header">
      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
