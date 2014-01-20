@@ -15,17 +15,14 @@ $q = "select * from pool order by pool_ref asc";
 $res = mysqli_query($link, $q);
 while($row = mysqli_fetch_row($res)){
 if ($result = mysqli_query($link, "SELECT * FROM instances where pool_ref = '{$row[2]}'")) {
-var_dump(); 
    /* determine number of rows result set */
     $row_cnt = mysqli_num_rows($result);
 if($row_cnt > 1){
 $rowx = mysqli_fetch_row($result);
-$ttl = date($rowx[4]);
-$now = date("H:i:s");
-$ttl .= strtotime($ttl);
-$now .= strtotime($now);
-$diff = $ttl - $now;
-$diff .= date("H:i:s", $diff);
+$ttl = strtotime($rowx[4]);
+$current = date("H:i:s");
+$time_now = strtotime($current);
+$diff = $ttl - $time_now;
 if($diff < 1){
 ?> 
 <div class="btn btn-primary" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px;"><input type="radio" value="<?php echo $row[2]; ?>" id="pool" name="pool"/><?php echo $row[2]; ?></div><br>
