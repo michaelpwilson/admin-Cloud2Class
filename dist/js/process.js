@@ -101,7 +101,9 @@
     $(".start_lesson").hide();
     $(".end_lesson").show();
     $(".holder").html(lesson);
-   }
+     $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
+   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }}); 
+  }
    });
   }
  });
