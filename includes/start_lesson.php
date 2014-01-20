@@ -15,27 +15,29 @@ $q = "select * from pool order by pool_ref asc";
 $res = mysqli_query($link, $q);
 while($row = mysqli_fetch_row($res)){
 if ($result = mysqli_query($link, "SELECT * FROM instances where pool_ref = '{$row[2]}'")) {
-    /* determine number of rows result set */
+var_dump(); 
+   /* determine number of rows result set */
     $row_cnt = mysqli_num_rows($result);
 if($row_cnt > 1){
 $rowx = mysqli_fetch_row($result);
-$ttl = $rowx[4];
-$now = date("H:i");
+$ttl = date($rowx[4]);
+$now = date("H:i:s");
 $ttl .= strtotime($ttl);
 $now .= strtotime($now);
-$diff = $now - $ttl;
-$diff .= date('H:i', $diff);
-if($diff < 0){
-?> <div class="btn btn-primary" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px;"><input type="radio" value="<?php echo $row[2]; ?>" id="pool" name="pool"/><?php echo $row[2]; ?></div><br>
+$diff = $ttl - $now;
+$diff .= date("H:i:s", $diff);
+if($diff < 1){
+?> 
+<div class="btn btn-primary" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px;"><input type="radio" value="<?php echo $row[2]; ?>" id="pool" name="pool"/><?php echo $row[2]; ?></div><br>
 <?php
 } else {
 ?>
 <div class="btn btn-success" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px; "><a style="color:white" value="<?php echo $row[2]; ?>"><b class="glyphicon glyphicon-user"></b><?php echo $row[2]; ?></a></div><br>
 <?php
 }
-}elseif($row_cnt < 0){
+}elseif($row_cnt == 0){
 ?>
-<div class="btn btn-success" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px; "><a style="color:white" value="<?php echo $row[2]; ?>"><b class="glyphicon glyphicon-user"></b><?php echo $row[2]; ?></a></div><br>
+<div class="btn btn-primary" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px;"><input type="radio" value="<?php echo $row[2]; ?>" id="pool" name="pool"/><?php echo $row[2]; ?></div><br>
 <?php
 }
 }

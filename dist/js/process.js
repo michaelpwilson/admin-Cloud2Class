@@ -1,7 +1,4 @@
   $(document).ready(function(){
-	$("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
-	$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
-
   $('.btn-primary').click(function() {
   if (!$("input[name='pool']:checked").val()) { 
    return false; 
@@ -19,6 +16,8 @@
     data:{pool_ref: pool},
     success:function(data){
     showComment();
+    $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
+    $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
     $(".holder").html(data);
     $( "#end_lesson" ).click(function() {
     var pool_ref = $("#pool_ref").val();    
@@ -93,7 +92,7 @@
   $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
-    data:{pool_ref: data},
+    data:{pool_ref: pool},
     success:function(lesson){
     alert(lesson);
     $(".start_lesson").hide();
