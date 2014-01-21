@@ -15,7 +15,10 @@ showMeTheLesson();
   addSubtract();
   showComment();
 
-  $( ".start_lesson" ).submit(function( event ) {
+startLesson();
+
+function startLesson(){  
+$(".start_lesson").submit(function( event ) {
     // Stop form from submitting normally
     event.preventDefault();
     // Get some values from elements on the page:
@@ -25,13 +28,13 @@ showMeTheLesson();
     var duration=$("#lesson_duration").val();
     var action="addcomment";
     var user_login=$(".session_name").val();
+    var user_id = $(".user_id").val();
    $.ajax({
     type:"post",
     url:"process.php",
-    data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, user_login:user_login},
+    data:{user_id:user_id, action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration},
     success:function(data){
     showComment();
-    var user_id = $(".user_id").val();
   $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
@@ -47,8 +50,8 @@ showMeTheLesson();
    });
   }
  });
-
  });
+}
 
 function addSubtract(){
 
@@ -118,7 +121,7 @@ function endLesson(){
      success:function(data){
      showComment();
         location.reload();
- 
+ startLesson();
         }
      });
     }); 

@@ -19,7 +19,7 @@ $shell_pass = $row[6];
 <input type="hidden" id="pool_ref" value="<?php echo $_POST['pool_ref']; ?>"/>
  <h1><a href="#" class="gobacktopools"><b style="float:left;" class="glyphicon glyphicon-arrow-left"></b></a>Lesson Details <b>(<?php echo $_POST['pool_ref']; ?>)</b>
 <?php
-$user_id = (int)$_POST['user_id'];
+$me = (int)$_POST['user_id'];
 $owner = (int)$row[0];
 ?>
 <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
@@ -41,7 +41,7 @@ $diff = $finished - $time_now;
 <div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } ?>" data-timer="<?php echo $diff; ?>" style="width:361px; height: 180px; margin-left:auto; margin-right:auto;"></div>
 </div>
 <?php
-if($owner == $user_id){
+if($owner == $me){
 ?>
   <button type="button" class="btn btn-primary" data-toggle="button">give me 30 more minutes</button>
   <button type="button" id="end_lesson" class="btn btn-danger" data-toggle="button">end</button>
