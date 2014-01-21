@@ -109,13 +109,18 @@
  });
 
  });
+var speed = 700;
+var times = 20;
+var loop = setInterval(showComment, 15000);
   function showComment(){
-  $.ajax({
+times--;
+    if(times === 0){clearInterval(loop);} 
+ $.ajax({
     type:"post",
     url:"process.php",
     data:"action=showcomment",
     success:function(data){
-     $("#comment").html(data);
+     $("#comment").fadeIn().html(data);
     }
   });
  }
