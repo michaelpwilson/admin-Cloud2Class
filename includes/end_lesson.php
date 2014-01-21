@@ -12,6 +12,9 @@ $res = mysqli_query($link, $q);
 $row = mysqli_fetch_row($res);  
 $started = $row[2];
 $minutes = (int)$row[3];
+$lesson_id = (int)$row[4];
+$shell_user = $row[5];
+$shell_pass = $row[6];
 ?>
 <input type="hidden" id="pool_ref" value="<?php echo $_POST['pool_ref']; ?>"/>
  <h1><a href="#" class="gobacktopools"><b style="float:left;" class="glyphicon glyphicon-arrow-left"></b></a>Lesson Details <b>(<?php echo $_POST['pool_ref']; ?>)</b>
@@ -21,12 +24,13 @@ $owner = (int)$row[0];
 ?>
 <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
 <hr>
- <h3>Started At:<br> <?php echo date("H:i", strtotime($started)); ?></h3>
+<?php echo "<code>username is: {$shell_user}</code><br><code>password is: {$shell_pass}</code>"; ?>
+ <h3>Started At:<br> <?php echo date("H:i a", strtotime($started)); ?></h3>
  <h3>Finished At:<br>
 
 <?php
 $finished = strtotime("+".$minutes." minutes", strtotime($started));
-$ttl = date("H:i", $finished); 
+$ttl = date("H:i a", $finished); 
 echo $ttl;
 
 $current = date("H:i:s");
@@ -46,9 +50,7 @@ if($owner == $user_id){
 echo "";
 }
 if($diff > 0){
-echo "<br>lesson is in progress";
 }elseif($diff <= 0){
-echo "<br>lesson ended, now for cpd to abolish instances and lesson";
 }
 ?>
 </div>

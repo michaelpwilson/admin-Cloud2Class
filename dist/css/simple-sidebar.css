@@ -1,3 +1,6 @@
+.end_lesson code{
+font-size:24px;
+}
 .none_instance{
 margin-top:75%;
 margin-left:20%;
@@ -8,7 +11,7 @@ min-height:140px;
 font-size:28px;
 }
 form h3{
-color:#2AAD0C;
+color:#5cb85c;
 }
 .start_lesson select{
 width:30%;
@@ -37,7 +40,7 @@ border-color:#207ce5;
 border:0;
 }
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-background-color:darkblue;
+background-color:darkgreen;
 }
 .navbar-fixed-bottom{
 background-color:#47a447;
