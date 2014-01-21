@@ -50,8 +50,8 @@
 
     <ul class="nav navbar-nav navbar-right">
           <li id="fat-menu" class="dropdown">
-      <input type="hidden" class="session_name" value="<?php echo $_SESSION['user_name']; ?>"/>
-      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['user_name']; ?> <b class="glyphicon glyphicon-align-justify"></b></a>
+      <input type="hidden" class="user_id" value="<?php echo $user_id; ?>"/>
+      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['user_name']; ?> <b class="glyphicon glyphicon-user"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
       <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Login Log</a></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Updates <span class="badge">1</span></a></li>

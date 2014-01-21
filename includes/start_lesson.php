@@ -6,7 +6,7 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 ?>
-<h1>Create a Lesson <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
+<h1><a href="#" class="gobacktopools" style="display:none;"><b style="float:left;" class="glyphicon glyphicon-arrow-left"></b></a>Create a Lesson <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
 <hr>
 <div class="pool-buttons">
 <h3>choose a slot:</h3>
@@ -29,7 +29,7 @@ if($diff < 1){
 <?php
 } else {
 ?>
-<div class="btn btn-success" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px; "><a style="color:white" value="<?php echo $row[2]; ?>"><b class="glyphicon glyphicon-user"></b><?php echo $row[2]; ?></a></div><br>
+<div class="btn btn-success" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px; "><a style="color:white" value="<?php echo $row[2]; ?>"><b class="glyphicon glyphicon-asterisk" style="float:left; padding-right:23px; margin-top:3px;"></b><?php echo $row[2]; ?></a></div><br>
 <?php
 }
 }elseif($row_cnt == 0){

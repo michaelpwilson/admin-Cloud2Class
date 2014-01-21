@@ -31,10 +31,11 @@ showMeTheLesson();
     data:{action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, user_login:user_login},
     success:function(data){
     showComment();
+    var user_id = $(".user_id").val();
   $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
-    data:{pool_ref: pool},
+    data:{pool_ref: pool, user_id: user_id},
     success:function(lesson){
     $(".start_lesson").hide();
     $(".end_lesson").show();
@@ -69,6 +70,8 @@ function showRestForm(){
   } else {
    $(".pool-buttons").fadeOut();
    $(".bottom-half").fadeIn();
+   $(".gobacktopools").fadeIn();
+  goBackToPools();
   }
   });
 }
@@ -82,10 +85,11 @@ location.reload();
 function showMeTheLesson() {
   $(".btn-success a").click(function(){
     var pool=$(this).text();
+    var user_id = $(".user_id").val();
   $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
-    data:{pool_ref: pool}, 
+    data:{pool_ref: pool, user_id: user_id}, 
     success:function(data){
     showComment();
     $(".holder").html(data);
