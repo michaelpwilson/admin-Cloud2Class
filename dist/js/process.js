@@ -20,8 +20,8 @@
     success:function(data){
     showComment();
     $(".holder").html(data);
-   $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
-   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
+   $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
+   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
     $( "#end_lesson" ).click(function() {
     var pool_ref = $("#pool_ref").val();    
     var end = "end";
@@ -101,8 +101,22 @@
     $(".start_lesson").hide();
     $(".end_lesson").show();
     $(".holder").html(lesson);
-     $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
-   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }}); 
+     $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
+   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }}); 
+       $( "#end_lesson" ).click(function() {
+    var pool_ref = $("#pool_ref").val();
+    var end = "end";
+   $.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{action:end, pool_ref: pool_ref},
+     success:function(data){
+     showComment();
+        location.reload();
+ 
+        }
+     });
+    }); 
   }
    });
   }
