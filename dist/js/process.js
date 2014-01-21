@@ -1,61 +1,7 @@
   $(document).ready(function(){
- $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false } }});
-    $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false } }});
 
-  $('.btn-primary').click(function() {
-  if (!$("input[name='pool']:checked").val()) { 
-   return false; 
-  } else { 
-   $(".pool-buttons").fadeOut();
-   $(".bottom-half").fadeIn();
-  }
-  });
-
-  $(".btn-success a").click(function(){
-    var pool=$(this).text();
-  $.ajax({
-    type:"post",
-    url:"includes/end_lesson.php",
-    data:{pool_ref: pool},
-    success:function(data){
-    showComment();
-    $(".holder").html(data);
-   $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
-   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
-    $( "#end_lesson" ).click(function() {
-    var pool_ref = $("#pool_ref").val();    
-    var end = "end";
-   $.ajax({
-     type:"post",
-     url:"ending.php",
-     data:{action:end, pool_ref: pool_ref},
-     success:function(data){
-     showComment();
-	location.reload();
-     
-	}
-     });
-
-
-    });
-
-   }
-  });
-  $("#giveme").click(function(){
-    var pool_ref=$("#pool_ref").val();
-    var give = "give";
-   $.ajax({
-     type:"post",
-     url:"ending.php",
-     data:{action:give, pool_ref: pool_ref},
-     success:function(data){
-     alert(data);
-	showComment();
-     }
-     });
-   });
-
-  });
+showRestForm();
+showMeTheLesson();
 
   jQuery.fn.existsWithValue = function() { 
     return this.length && this.val().length; 
@@ -66,15 +12,7 @@
     $("#wrapper").toggleClass("active");
     });
 
-  var input = document.getElementById('example');
-
-  document.getElementById('add').onclick = function(){
-    input.value = parseInt(input.value, 10) +1
-    }
-  document.getElementById('subtract').onclick = function(){
-    input.value = parseInt(input.value, 10) -1
-    }
-  
+  addSubtract();
   showComment();
 
   $( ".start_lesson" ).submit(function( event ) {
@@ -101,9 +39,72 @@
     $(".start_lesson").hide();
     $(".end_lesson").show();
     $(".holder").html(lesson);
-     $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
-   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }}); 
-       $( "#end_lesson" ).click(function() {
+   timeCircles();
+   endLesson();
+   goBackToPools();
+  }
+   });
+  }
+ });
+
+ });
+
+function addSubtract(){
+
+  var input = document.getElementById('example');
+
+  document.getElementById('add').onclick = function(){
+    input.value = parseInt(input.value, 10) +1
+    }
+  document.getElementById('subtract').onclick = function(){
+    input.value = parseInt(input.value, 10) -1
+    }
+
+}
+
+function showRestForm(){
+  $('.btn-primary').click(function() {
+  if (!$("input[name='pool']:checked").val()) {
+   return false;
+  } else {
+   $(".pool-buttons").fadeOut();
+   $(".bottom-half").fadeIn();
+  }
+  });
+}
+
+function goBackToPools(){
+$(".gobacktopools b").click( function (){
+location.reload();
+});
+}
+
+function showMeTheLesson() {
+  $(".btn-success a").click(function(){
+    var pool=$(this).text();
+  $.ajax({
+    type:"post",
+    url:"includes/end_lesson.php",
+    data:{pool_ref: pool}, 
+    success:function(data){
+    showComment();
+    $(".holder").html(data);
+        timeCircles();
+        endLesson();
+	goBackToPools();  
+
+   }
+  });
+  });
+}
+
+function timeCircles(){
+$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
+   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
+}
+
+function endLesson(){
+   $( "#end_lesson" ).click(function() {
     var pool_ref = $("#pool_ref").val();
     var end = "end";
    $.ajax({
@@ -117,15 +118,13 @@
         }
      });
     }); 
-  }
-   });
-  }
- });
+}
 
- });
+
 var speed = 700;
 var times = 20;
 var loop = setInterval(showComment, 15000);
+
   function showComment(){
 times--;
     if(times === 0){clearInterval(loop);} 
