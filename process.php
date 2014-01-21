@@ -5,6 +5,8 @@
   $action=$_POST["action"];
     if($action=="showcomment"){
     $show=mysqli_query($link, "Select * from instances order by ttl desc");
+      $row_cnt = mysqli_num_rows($show);
+	if($row_cnt > 1){
       while($row = mysqli_fetch_array($show)){
      echo '<li style="border-bottom:1px solid #eee;"><a href="#">';
     if($row[instance_state] == 'Ready'){        
@@ -23,7 +25,10 @@
       echo '<text style="font-weight:bold; padding-left:5px;">' . $row[instance_name] . '</text><text class="pull-right" id="instance_state" style="padding-right:15px; font-size:11px;">' . $row[instance_state] . '</text>';
       echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">' . date("H:i", strtotime($row[ttl])) . '</text>';
       echo '</a></li>';
-    }
+   }
+} else {
+echo '<li><img class="none_instance" src="views/c2c-logo.png"/></li>';
+}
        } elseif($action=="addcomment"){
 
 	$pool = $_POST['pool'];
