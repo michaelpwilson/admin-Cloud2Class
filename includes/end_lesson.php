@@ -22,7 +22,7 @@ $shell_pass = $row[6];
 $me = (int)$_POST['user_id'];
 $owner = (int)$row[0];
 ?>
-<a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
+<a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a><button type="button" id="database_restart" class="btn btn-default" data-toggle="button"><b class="glyphicon glyphicon-trash"></b></button></h1>
 <hr>
 <?php echo "<code>username is: {$shell_user}</code><br><code>password is: {$shell_pass}</code>"; ?>
  <h3>Started At:<br> <?php echo date("H:i a", strtotime($started)); ?></h3>
@@ -38,12 +38,12 @@ $time_now = strtotime($current);
 $diff = $finished - $time_now;
 ?>   
 </h3>
-<div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } ?>" data-timer="<?php echo $diff; ?>" style="width:361px; height: 180px; margin-left:auto; margin-right:auto;"></div>
+<div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } else { echo ""; } ?>" data-timer="<?php echo $diff; ?>" style="width:361px; height: 122px; margin-left:auto; margin-right:auto;"></div>
 </div>
 <?php
 if($owner == $me){
 ?>
-  <button type="button" class="btn btn-primary" data-toggle="button">give me 30 more minutes</button>
+  <button type="button" id="giveme" class="btn btn-primary" data-toggle="button">give me 30 more minutes</button>
   <button type="button" id="end_lesson" class="btn btn-danger" data-toggle="button">end</button>
 <?php
 } else {

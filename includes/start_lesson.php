@@ -23,6 +23,9 @@ $ttl = strtotime($rowx[4]);
 $current = date("H:i:s");
 $time_now = strtotime($current);
 $diff = $ttl - $time_now;
+$lesson_id = (int)$rowx[3];
+$resem = mysqli_query($link, "SELECT * FROM lesson where lesson_id = {$lesson_id}"); 
+$xox = mysqli_fetch_row($resem);
 if($diff < 1){
 ?> 
 <div class="btn btn-primary" style="min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px;"><input type="radio" value="<?php echo $row[2]; ?>" id="pool" name="pool"/><?php echo $row[2]; ?></div><br>

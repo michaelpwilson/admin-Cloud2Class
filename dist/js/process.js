@@ -46,6 +46,8 @@ $(".start_lesson").submit(function( event ) {
    timeCircles();
    endLesson();
    goBackToPools();
+   giveMe30();
+   databaseRestart();
   }
    });
   }
@@ -99,14 +101,15 @@ function showMeTheLesson() {
         timeCircles();
         endLesson();
 	goBackToPools();  
-
+	giveMe30();
+	databaseRestart();
    }
   });
   });
 }
 
 function timeCircles(){
-$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
+$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: true }, count_past_zero: false }});
    $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
 }
 
@@ -125,6 +128,38 @@ function endLesson(){
         }
      });
     }); 
+}
+
+function giveMe30(){
+   $( "#giveme" ).click(function() {
+    var pool_ref = $("#pool_ref").val();
+    var give = "give";
+   $.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{action:give, pool_ref: pool_ref},
+     success:function(data){
+     showComment();
+ 	startLesson();
+     alert(data);
+        }
+     });
+    });
+}
+
+function databaseRestart(){
+   $( "#database_restart" ).click(function() {
+    var pool_ref = $("#pool_ref").val();
+    var give = "restart";
+   $.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{action:give, pool_ref: pool_ref},
+     success:function(data){
+	location.reload();
+        }
+     });
+    });
 }
 
 
