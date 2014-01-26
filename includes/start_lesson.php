@@ -11,15 +11,29 @@ if (mysqli_connect_errno())
 <div class="pool-buttons">
 <h3>choose a Class:</h3>
 <?php
-$q = "select * from pool order by pool_ref asc";
+$q = "select * from pool order by pool_ref";
 $res = mysqli_query($link, $q);
+$result = mysqli_query($link, "SELECT * FROM instances WHERE pool_ref = '{$pool_ref}'");
+$resuml = mysqli_query($link, "SELECT pool_id FROM pool WHERE pool_ref = '{$pool_ref}'");
+
 while($row = mysqli_fetch_row($res)){
-if ($result = mysqli_query($link, "SELECT * FROM instances where pool_ref = '{$row[2]}'")) {
-   /* determine number of rows result set */
+$rowi = mysqli_fetch_row($resuml);
+$pool_id = (int)$rowi[0];
+
+$pool_ref = $row[2];
+$qres = "SELECT * FROM user_pool WHERE user_id = {$user_id}";
+$resu = mysqli_query($link, $qres);
+$rowiey = mysqli_fetch_row($resu);
+$pool_id = (int)$rowiey[0];
+$user_id = (int)$rowiey[1];
+
+if ($result || isset($pool_id) && isset($user_id)) {
+/* determine number of rows result set */
     $row_cnt = mysqli_num_rows($result);
-if($row_cnt > 1){
+if($row_cnt < 1){
 $rowx = mysqli_fetch_row($result);
 $ttl = strtotime($rowx[4]);
+$pool_ref = $row[2];
 $current = date("H:i:s");
 $time_now = strtotime($current);
 $diff = $ttl - $time_now;
