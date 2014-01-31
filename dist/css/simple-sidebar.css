@@ -1,3 +1,10 @@
+.admin_button {
+background:#d43f3a;
+margin:9px;
+}
+.admin_button .btn-danger{
+padding:5px 10px 5px 10px;
+}
 .confirm-account{
 width:45%;
 margin-left:auto;

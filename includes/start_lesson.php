@@ -14,7 +14,7 @@ if (mysqli_connect_errno())
 <h3>choose a Class:</h3>
 <?php
 
-$pool_list = mysqli_query($link, "select up.pool_id, p.pool_ref from user_pool up, pool p where up.user_id={$user_id} and up.pool_id=p.pool_id");
+$pool_list = mysqli_query($link, "select up.pool_id, p.pool_ref from user_pool up, pool p where up.user_id={$user_id} and up.pool_id=p.pool_id order by p.pool_ref");
 
 while($row = mysqli_fetch_row($pool_list))
 {
@@ -50,7 +50,7 @@ while($row = mysqli_fetch_row($pool_list))
 ?>
 </div>
 <div class="bottom-half" style="display:none;">
-<h3>type of machine:</h3>
+<h3>type of computer:</h3>
 <select id="lesson_type" name="lesson_type" class="lesson-dropdown form-control">
 <?php
 
@@ -64,8 +64,8 @@ while($row = mysqli_fetch_row($res))
 
 ?>
 </select> 
-<h3>number of instances:</h3>
-<a href="#"><i class="glyphicon glyphicon-chevron-left" id="subtract"></i></a><input style="border:0; width:5%; font-size:28px;" id="example" name="instances" type="text" value="7"/><a href="#"><i id="add" class="glyphicon glyphicon-chevron-right"></i></a>
+<h3>number of computers:</h3>
+<a href="#"><i class="glyphicon glyphicon-chevron-left" id="subtract"></i></a><input style="border:0; width:30px; font-size:28px;" id="example" name="instances" type="text" value="7"/><a href="#"><i id="add" class="glyphicon glyphicon-chevron-right"></i></a>
 <h3>duration of lesson:</h3>
 <select name="lesson_duration" id="lesson_duration" class="lesson-dropdown form-control">
   <option value="30">30 minutes</option>

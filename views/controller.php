@@ -29,7 +29,7 @@
      <span class="icon-bar"></span>
      <span class="icon-bar"></span>
      </button>
-   <a class="navbar-brand" href="index.php">Controller</a>
+   <a class="navbar-brand" href="index.php">Cloud2Class</a>
   </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -46,6 +46,7 @@
           <li><a href="glyphicons.php">Help Page</a></li>
          </ul>
           </li>
+   <li class="admin_button"><a class="btn btn-danger btn-xs">admin</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
@@ -79,6 +80,7 @@
        <div class="holder">
 	<?php include "includes/start_lesson.php"; ?>
 	 <?php include "includes/end_lesson.php"; ?>
+	<?php include "includes/admin.php"; ?>
        </div>
       <div id="instances-holder">
         </div>

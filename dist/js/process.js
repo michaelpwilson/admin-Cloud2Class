@@ -14,6 +14,13 @@ showMeTheLesson();
   $(".change_password").click(function() {
 	$("#password-modal").modal();  
     });
+    $(".admin_button .btn-danger").click(function() {
+	$(".admin_screen").fadeIn();
+	$(".start_lesson").fadeOut();
+	$("#sidebar-wrapper").fadeOut();
+	$("#wrapper").fadeIn().css("padding-right", 0);
+	$(".paid_time_remaining").TimeCircles({ time: { Days: { show: true }, Hours: { show: true }, Seconds: { show: false } }});   
+ });
 
 
   addSubtract();
@@ -104,7 +111,7 @@ function showMeTheLesson() {
         endLesson();
 	goBackToPools();  
 	giveMe30();
-	databaseRestart();
+	showComment();
    }
   });
   });
@@ -149,22 +156,6 @@ function giveMe30(){
     });
 }
 
-function databaseRestart(){
-   $( "#database_restart" ).click(function() {
-    var pool_ref = $("#pool_ref").val();
-    var give = "restart";
-   $.ajax({
-     type:"post",
-     url:"ending.php",
-     data:{action:give, pool_ref: pool_ref},
-     success:function(data){
-	location.reload();
-        }
-     });
-    });
-}
-
-
 var speed = 700;
 var times = 20;
 var loop = setInterval(showComment, 15000);
@@ -172,15 +163,14 @@ var loop = setInterval(showComment, 15000);
   function showComment(){
 times--;
     if(times === 0){clearInterval(loop);} 
- $.ajax({
+ var lesson_pool = $(".end_lesson #pool_ref").val();
+var showcomment = "showcomment"; 
+$.ajax({
     type:"post",
     url:"process.php",
-    data:"action=showcomment",
+    data: {action:showcomment, lesson_pool: lesson_pool},
     success:function(data){
      $("#comment").fadeIn().html(data);
-     $("#comment li a").click(function() {
-        $(this).popover('show');
-     });   
  }
   });
  }
