@@ -36,7 +36,7 @@
    <li class="dropdown">
            <a href="#" class="dropdown-toggle" data-toggle="dropdown">settings <b class="glyphicon glyphicon-wrench"></b></a>
           <ul class="dropdown-menu">
-               <li><a href="settings.php">Settings</a></li>
+               <li><a class="change_password" href="#">Change Password</a></li>
                <li><a href="settings.php">More Settings....</a></li>
           </ul>
           </li>
@@ -90,7 +90,7 @@
       <li><a class="navbar-brand" href="index.php">Bright Process Ltd 2014 &copy;</a></li>
     </ul>
   </div>
- 
+<?php include "modals/init.php"; ?> 
    </body>
       <script src="dist/js/jquery.min.js"></script>
       <script type="text/javascript" src="dist/js/process.js"></script>

@@ -1,5 +1,4 @@
   $(document).ready(function(){
-
 showRestForm();
 showMeTheLesson();
 
@@ -11,6 +10,11 @@ showMeTheLesson();
     e.preventDefault();
     $("#wrapper").toggleClass("active");
     });
+
+  $(".change_password").click(function() {
+	$("#password-modal").modal();  
+    });
+
 
   addSubtract();
   showComment();
@@ -34,11 +38,11 @@ $(".start_lesson").submit(function( event ) {
     url:"process.php",
     data:{user_id:user_id, action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration},
     success:function(data){
-    showComment();
+    var lesson_id = data;
   $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
-    data:{pool_ref: pool, user_id: user_id},
+    data:{lesson_id: lesson_id, pool_ref: pool, user_id: user_id},
     success:function(lesson){
     $(".start_lesson").hide();
     $(".end_lesson").show();
@@ -70,14 +74,11 @@ function addSubtract(){
 
 function showRestForm(){
   $('.btn-primary').click(function() {
-  if (!$("input[name='pool']:checked").val()) {
-   return false;
-  } else {
+   $( "#pool" ).prop( "checked", true );
    $(".pool-buttons").fadeOut();
    $(".bottom-half").fadeIn();
    $(".gobacktopools").fadeIn();
   goBackToPools();
-  }
   });
 }
 
@@ -91,10 +92,11 @@ function showMeTheLesson() {
   $(".btn-success a").click(function(){
     var pool=$(this).text();
     var user_id = $(".user_id").val();
+    var lesson_id =$(this).find("#lesson_id").val();
   $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
-    data:{pool_ref: pool, user_id: user_id}, 
+    data:{lesson_id: lesson_id, pool_ref: pool, user_id: user_id}, 
     success:function(data){
     showComment();
     $(".holder").html(data);
@@ -176,7 +178,10 @@ times--;
     data:"action=showcomment",
     success:function(data){
      $("#comment").fadeIn().html(data);
-    }
+     $("#comment li a").click(function() {
+        $(this).popover('show');
+     });   
+ }
   });
  }
  });

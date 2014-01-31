@@ -1,3 +1,16 @@
+.confirm-account{
+width:45%;
+margin-left:auto;
+margin-right:auto;
+margin-top:27px;
+}
+#password-modal .form-control{
+padding: 21px;
+margin-bottom: 15px;
+}
+#pool{
+display:none;
+}
 .end_lesson code{
 font-size:24px;
 }

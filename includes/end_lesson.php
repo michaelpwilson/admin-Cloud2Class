@@ -5,9 +5,8 @@ $qw = "select * from pool where pool_ref = '{$_POST['pool_ref']}'";
 $resw = mysqli_query($link, $qw);
 $rows = mysqli_fetch_row($resw);
 $pool_id = $rows[0];
-
 if(isset($pool_id)){
-$q = "select * from lesson where pool_id = {$pool_id}";
+$q = "select * from lesson where pool_id = {$pool_id} AND lesson_id = {$_POST['lesson_id']}";
 $res = mysqli_query($link, $q);
 $row = mysqli_fetch_row($res);  
 $started = $row[2];
@@ -22,7 +21,7 @@ $shell_pass = $row[6];
 $me = (int)$_POST['user_id'];
 $owner = (int)$row[0];
 ?>
-<a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a><button type="button" id="database_restart" class="btn btn-default" data-toggle="button"><b class="glyphicon glyphicon-trash"></b></button></h1>
+<a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
 <hr>
 <?php echo "<code>username is: {$shell_user}</code><br><code>password is: {$shell_pass}</code>"; ?>
  <h3>Started At:<br> <?php echo date("H:i a", strtotime($started)); ?></h3>

@@ -5,9 +5,9 @@
     if($action=="showcomment"){
     $show=mysqli_query($link, "Select * from instances order by ttl desc");
       $row_cnt = mysqli_num_rows($show);
-	if($row_cnt > 1){
+	if($row_cnt >= 1){
       while($row = mysqli_fetch_array($show)){
-     echo '<li style="border-bottom:1px solid #eee;"><a href="#">';
+     echo '<li style="border-bottom:1px solid #eee;"><a href="#" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."  title="" data-original-title="A Title">';
     if($row[instance_state] == 'Ready'){        
      echo '<b class="glyphicon glyphicon-tasks" style="color:green; font-size:28px; position:relative; top:13px; right:25px;"></b>';
     } elseif($row[instance_state] == 'Failed' || $row[instance_state] == 'Shutting Down'){
@@ -46,6 +46,7 @@ echo '<li><img class="none_instance" src="views/c2c-logo.png"/></li>';
     }
 
     $lesson_id = mysqli_insert_id($link);
+	echo ($lesson_id);
     $anuv = "insert into instances (instance_name, instance_state, instance_type, lesson_id, ttl, pool_ref) values('Unassigned', 'Requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 60  . " SECOND, '{$pool}' )";
 
     for($i=0;$i<$no_instances;$i++){ // loop depending on the choosen amount of instances
