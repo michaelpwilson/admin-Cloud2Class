@@ -33,7 +33,7 @@ if($action=="showcomment"){
                     echo '<b class="glyphicon glyphicon-tasks" style="color:#eee; font-size:28px; position:relative; top:13px; right:25px;"></b>';
                 }
                 echo '<text style="font-weight:bold; padding-left:5px;">' . $row[instance_name] . '</text><text class="pull-right" id="instance_state" style="padding-right:15px; font-size:11px;">' . $row[instance_state] . '</text>';
-                echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">' . date("H:i", strtotime($row[ttl])) . '</text>';
+                echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">expires: ' . date("H:i", strtotime($row[ttl])) . '</text>';
                 echo '</a></li>';
             }
         } else

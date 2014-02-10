@@ -6,7 +6,7 @@ $link= mysqli_connect("cpd-db","cpd","dkfj55.1","cpd");
 $qw = "select p.pool_id, p.pool_ref from pool p, lesson l where lesson_id = {$lesson_id} and l.pool_id=p.pool_id";
 $resw = mysqli_query($link, $qw);
 $rows = mysqli_fetch_row($resw);
-$pool_id = $rows[0];
+$pool_id = (int)$rows[0];
 $pool_ref = $rows[1];
 if(isset($pool_id)){
 $q = "select user_id, pool_id, lesson_start, duration, login, password from lesson where pool_id = {$pool_id} AND lesson_id = {$_POST['lesson_id']}";
@@ -28,12 +28,11 @@ print "<h2 style=\"margin-top:-15px\">Lesson in progress (<b>$pool_ref</b>)";
 $me = (int)$_POST['user_id'];
 $owner = (int)$row[0];
 print "<hr><div class=\"bs-callout bs-callout-info\">";
-print "<code>URL is: <a target=\"_blank\" href=\"https://$pool_ref.cloud2class.com\">https://$pool_ref.cloud2class.com</a></code>";
-print "<br><code style='left-margin: 30%;'>username is: $shell_user</code>";
-print "<br><code>password is: $shell_pass</code><br>"; 
+print "<p class=\"lead\">URL is: <a target=\"_blank\" href=\"https://$pool_ref.cloud2class.com\">https://$pool_ref.cloud2class.com</a>";
+print "<br>username is: $shell_user";
+print "<br>password is: $shell_pass<br>"; 
 if($owner == $me){
 ?>
-<br>
   <button type="button" id="giveme" class="btn btn-primary" data-toggle="button">give me 30 more minutes</button>
   <button type="button" id="end_lesson" class="btn btn-danger" data-toggle="button">end</button>
 <?php

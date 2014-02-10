@@ -93,12 +93,13 @@ echo "";
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse navbar-mycol">
     <ul class="nav navbar-nav navbar-right">
- <li class="siteseal" style="display:none; margin-right:170px; margin-top:20px;"><span id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=AywkROD2O9vhtzzwflDU4VLXEb6GXv8TKsXF6eoVTX8bSfFbkxUR"></script><img style="cursor:pointer;cursor:hand" src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" onclick="verifySeal();"></span></li>
+<li class="siteseal" style="margin-right:170px; margin-top:20px;"><span id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=AywkROD2O9vhtzzwflDU4VLXEb6GXv8TKsXF6eoVTX8bSfFbkxUR"></script></span></li>
               <li><h1>support</h1></li>
-<li class="email-us" style="margin-right:57px;"><a data-toggle="modal" data-target="#email-modal" href="">tel: +44 (0)208 8195 925<br>email: support@brightprocess.com</a></li>
-		<li><h1 style="left:-62px;">web</h1></li>               
- 		<li style="padding-left:25px;"><a href="">www.brightprocess.com/c2c</a><a style="margin-top:-30px;" href="#">about: www.brightprocess.com/about-us</a></li>
-                <li style="margin-top:2px; margin-right:24px;"><img class="trademark" src="https://pbs.twimg.com/profile_images/3569761065/3e3f093c9102c0e09d06582f197b4956_bigger.png" width="64" height="64"></li>
+<li class="email-us" style="margin-right:57px;"><a href="mailto:support@brightprocess.com?Subject=Cloud2Class Support Request">tel: +44 (0)208 8195 925<br>email: support@brightprocess.com</a></li>
+                <li><h1 style="left:-62px;">web</h1></li>
+                <li style="padding-left:25px;"><a href="http://cloud2class.com" target="_blank">cloud2class.com</a><a style="margin-top:-30px;" target="_blank" href="http://www.brightprocess.com/about-us">www.brightprocess.com/about-us</a></li>
+                <li style="margin-top:2px; margin-right:24px;"><img class="trademark" src="img/logo-trans.png" width="64" height="64"/></li>
+
     </ul>
 
 </div><!-- /.navbar-collapse -->

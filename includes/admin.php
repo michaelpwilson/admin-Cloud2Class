@@ -12,7 +12,7 @@ $myorg = (int)$result[0];
 if($fetchy <= 0){
 ?>
 <div class="bs-callout bs-callout-danger">
-    <h4>You currently owe money from previous lessons</h4>
+    <h4>You do not have any credit. Please purchase some using the link below.</h4>
   </div>
 <b class="glyphicon glyphicon-minus minus-figure"></b>
 <?php
@@ -26,9 +26,7 @@ else{
 <input type="hidden" class="time_remaining" value="<?php echo $fetchy; ?>"/>
 <div class="paid_time_remaining stopwatch" data-timer="<?php echo $fetchy * 60; ?>"></div>
 </div>
-<div class="btn-group btn-group-lg">
-
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<form style="display:none" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="3XKPBJYKB6274">
 <table>
@@ -43,54 +41,44 @@ else{
 <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
 </form>
-</div>
+<a href="mailto:support@brightprocess.com?Subject=Cloud2Class%20Account%20Request" class="btn btn-success">Make this Live!</a> (Requires 24hours)
 <hr>
-<h2 style="text-decoration:underline;">Classes</h2>
+<h2 style="text-decoration:underline;">Last 10 Classes</h2>
 <div style="height:340px">
 <div class="table-responsive">
               <table class="table table-bordered table-hover table-striped tablesorter">
                 <thead>
                   <tr>
-                    <th class="header">launched by <i class="fa fa-sort"></i></th>
-                    <th class="header">Visits <i class="fa fa-sort"></i></th>
-                    <th class="header">% New Visits <i class="fa fa-sort"></i></th>
-                    <th class="header">Revenue <i class="fa fa-sort"></i></th>
+                    <th class="header">Launched By <i class="fa fa-sort"></i></th>
+                    <th class="header">Pool <i class="fa fa-sort"></i></th>
+                    <th class="header">Lesson Start <i class="fa fa-sort"></i></th>
+                    <th class="header">Duration <i class="fa fa-sort"></i></th>
                   </tr>
                 </thead>
                 <tbody>
  		  <?php
-$lesn = mysqli_query($link, "select * from lesson l, user u where l.user_id=u.user_id and u.org_id=" . $myorg . " order by l.lesson_id desc limit 7");
-$result = mysqli_query($link, "select count(*) from lesson l, user u where l.user_id=u.user_id and u.org_id=" . $myorg);
-$count = mysqli_fetch_row($result);
-$per_page = 7;
-$pages = ceil((int)$count[0]/$per_page);
-		var_dump($pages);
+$lesn = mysqli_query($link, "select * from lesson l, user u where l.user_id=u.user_id and u.org_id=" . $myorg . " order by l.lesson_start desc limit 10");
 	while($lesson = mysqli_fetch_row($lesn)){
+$usr = mysqli_query($link, "select user_login from user where user_id = {$lesson[0]}");
+$usr_lgn = mysqli_fetch_row($usr);
+$pool = mysqli_query($link, "select pool_ref from pool where pool_id = {$lesson[1]}");
+$plref = mysqli_fetch_row($pool);
 		?>
 		<tr>
-                    <td><?php echo $lesson[0]; ?></td>
-                    <td>261</td>
-                    <td>33.3%</td>
-                    <td>$234.12</td>
+                    <td><?php echo $usr_lgn[0]; ?></td>
+                    <td><?php echo $plref[0]; ?></td>
+                    <td><?php echo date("H:ia - d M Y", strtotime($lesson[2])); ?></td>
+                    <td><?php echo $lesson[3]; ?></td>
                   </tr>
 		<?php
 		}
 		?>
                 </tbody>
               </table>
- <ul class="pagination">
-    <?php
-       	//Show page links
-        for($i=1; $i<=$pages; $i++)
-        {
-     echo '<li id="'.$i.'"><a href="#">'.$i.'</a></li>';
-       	}
-    ?>
-              </ul>
-            </div>
+</div>
 </div>
 <hr>
-<h2 style="text-decoration:underline;">Users</h2>
+<h2 style="text-decoration:underline; margin-top:83px;">Users</h2>
 <div style="height:340px">
 <div class="table-responsive">
               <table class="table table-hover table-striped tablesorter">
@@ -100,7 +88,8 @@ $pages = ceil((int)$count[0]/$per_page);
                     <th class="header">title <i class="fa fa-sort"></i></th>
                     <th class="header">forename <i class="fa fa-sort"></i></th>
                     <th class="header">surname <i class="fa fa-sort"></i></th>
-                  </tr>
+                    <th class="header">change password</th>
+		  </tr>
                 </thead>
                 <tbody>
 <?php
@@ -116,7 +105,7 @@ $usr_tit = $row[6];
                     <td><?php echo $usr_tit; ?></td>
 			<td><?php echo $fre_nme; ?></td>
                     <td><?php echo $sur_nme; ?></td>
-                    <td>$321.33</td>
+                    <td style="text-align:center;"><button value="<?php echo $usr_lgn; ?>" class="reset-p btn btn-primary btn-xs">reset</button></td>
                   </tr>
 <?php
 }
@@ -124,9 +113,5 @@ $usr_tit = $row[6];
                 </tbody>
               </table>
             </div>
-</div>
-<div class="btn-group btn-group-lg">
-  <button type="button" class="btn btn-primary">Test</button>
-  <button type="button" class="btn btn-success">Change Password</button>
 </div>
 </div>

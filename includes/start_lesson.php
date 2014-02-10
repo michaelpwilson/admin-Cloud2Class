@@ -8,19 +8,20 @@ if (mysqli_connect_errno())
 }
 
 ?>
-<h1>Create a Lesson</h1>
+<h1>Start a Lesson</h1>
 <hr>
 <div class="pool-buttons">
 <h3>choose a Class:</h3>
 <?php
 
-$pool_list = mysqli_query($link, "select up.pool_id, p.pool_ref from user_pool up, pool p where up.user_id={$user_id} and up.pool_id=p.pool_id order by p.pool_ref");
+$pool_list = mysqli_query($link, "select up.pool_id, p.pool_ref, p.pool_max_instances from user_pool up, pool p where up.user_id={$user_id} and up.pool_id=p.pool_id order by p.pool_ref");
 
 while($row = mysqli_fetch_row($pool_list))
 {
     $pool_id=(int)$row[0];
     $pool_ref=$row[1];
     $pool_count=$row[2];
+    $pool_max=$row[3];
 
     $current_lesson = mysqli_query($link, "SELECT lesson_id FROM lesson WHERE pool_id=$pool_id and  (lesson_start + interval duration minute > now())");
     $row_cnt = mysqli_num_rows($current_lesson);
@@ -62,20 +63,27 @@ while($row = mysqli_fetch_row($res))
 
 }
 
+$q = "select pool_max_instances from pool where pool_ref='${pool_ref}'";
+$res = mysqli_query($link, $q);
+$pool_max=mysqli_fetch_row($res);
+
 ?>
 </select> 
 <h3>number of computers:</h3>
-<a href="#"><i class="glyphicon glyphicon-chevron-left" id="subtract"></i></a><input style="border:0; width:30px; font-size:28px;" id="example" name="instances" type="text" value="7"/><a href="#"><i id="add" class="glyphicon glyphicon-chevron-right"></i></a>
+<a href="#"><i class="glyphicon glyphicon-chevron-left" id="subtract"></i></a><input style="border:0; width:30px; font-size:28px;" id="example" name="instances" type="text" value="7"/><a href="#"><i id="add" class="glyphicon glyphicon-chevron-right"></i></a> (max  
+<?php
+print "$pool_max[0])";
+?>
 <h3>duration of lesson:</h3>
 <select name="lesson_duration" id="lesson_duration" class="lesson-dropdown form-control">
   <option value="30">30 minutes</option>
   <option value="60">60 minutes</option>
   <option value="90">90 minutes</option>
 </select>
-<h3>sudo to root:</h3>
+<h3>advanced commands?:</h3>
 <input type="radio" name="complete" value="1" id="complete_yes" />
  <label for="complete_yes">Yes</label>
- <input type="radio" name="complete" value="0" id="complete_no" />
+ <input type="radio" checked name="complete" value="0" id="complete_no" />
  <label for="complete_no">No</label>
 <br>
 <input type="submit" name="lesson_go" value="Go!" style="margin-top:15px" class="btn-success btn btn-lg"/>

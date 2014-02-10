@@ -3,21 +3,38 @@ adminButton();
 var val = parseFloat($(".time_remaining").val());
 var parsedVal = 0;
 
-if (!isNaN(val))
-{
+if (!isNaN(val)){
   parsedVal = val;
   $(".paid_time_remaining").css("color", "#d9534f");
-
 }
 
-if (parsedVal > 0)
-{
-alert("your not in debt");
-}
 
 
 showRestForm();
 showMeTheLesson();
+
+$(".update_pwd").click(function() {
+var user =$("#password-modal .user").val();
+var first_pass =$("#password-modal input[name=user_password_new]").val();
+var second_pass =$("#password-modal input[name=user_password_repeat]").val();
+var changing = "changing";
+if(first_pass === second_pass){
+$.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{action:changing, first_pass: first_pass, user: user},
+     success:function(data){
+	$("#password-modal").modal('hide');
+        }
+     });
+} else {
+$("#password-modal input[name=user_password_new]").attr('id', 'inputError2');
+$("#password-modal input[name=user_password_repeat]").attr('id', 'inputError2');
+$("#password-modal .form-group").addClass("has-feedback").addClass("has-error");
+$("#password-modal span").show();
+$("#pwd-message").text("Your passwords do not match").fadeIn();
+}
+});
 
   jQuery.fn.existsWithValue = function() { 
     return this.length && this.val().length; 
@@ -30,9 +47,13 @@ function menuToggle(){
     });
 }
 
-  $(".change_password").click(function() {
-	$("#password-modal").modal();  
+  $(".reset-p").click(function() {
+	var usr =$(this).val();
+	$("#password-modal").modal();
+        $("#password-modal h4").text("change password for " + usr);
+	$("#password-modal .user").val(usr);
     });
+
 function adminButton(){
     $(".admin_button .btn-danger").click(function() {
 	$(".admin_screen").fadeIn();
@@ -211,12 +232,12 @@ $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: {
 
 function endLesson(){
    $( "#end_lesson" ).click(function() {
-    var pool_ref = $("#pool_ref").val();
+    var lesson_id = $("#lesson_id").val();
     var end = "end";
    $.ajax({
      type:"post",
      url:"ending.php",
-     data:{action:end, pool_ref: pool_ref},
+     data:{action:end, lesson_id: lesson_id},
      success:function(data){
      showComment();
         location.reload();
@@ -227,12 +248,12 @@ function endLesson(){
 
 function giveMe30(){
    $( "#giveme" ).click(function() {
-    var pool_ref = $("#pool_ref").val();
+    var lesson_id = $("#lesson_id").val();
     var give = "give";
    $.ajax({
      type:"post",
      url:"ending.php",
-     data:{action:give, pool_ref: pool_ref},
+     data:{action:give, lesson_id: lesson_id},
      success:function(data){
 	location.reload();
         }
