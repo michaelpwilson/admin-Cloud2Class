@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">My Details</h4>
       </div>
       <div class="modal-body">
-<form class="form-register" method="post" action="register.php" name="registerform">
+<form class="form-register" method="post" action="" name="form">
 <?php
 $result = mysqli_query($link, "select * from user where user_login = '{$_SESSION['user_name']}'");
 $details = mysqli_fetch_row($result);
@@ -32,6 +32,9 @@ $surname = $details[6];
       <div class="modal-footer">
 <button type="button" class="btn btn-primary">Update Details</button>
 </form> 
+<?php
+var_dump($_POST['user_name'], $_POST['user_forename'], $_POST['user_surname']);
+?>
 </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

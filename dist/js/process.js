@@ -1,4 +1,21 @@
   $(document).ready(function(){
+adminButton();
+var val = parseFloat($(".time_remaining").val());
+var parsedVal = 0;
+
+if (!isNaN(val))
+{
+  parsedVal = val;
+  $(".paid_time_remaining").css("color", "#d9534f");
+
+}
+
+if (parsedVal > 0)
+{
+alert("your not in debt");
+}
+
+
 showRestForm();
 showMeTheLesson();
 
@@ -6,22 +23,91 @@ showMeTheLesson();
     return this.length && this.val().length; 
   }
 
+function menuToggle(){
   $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("active");
     });
+}
 
   $(".change_password").click(function() {
 	$("#password-modal").modal();  
     });
+function adminButton(){
     $(".admin_button .btn-danger").click(function() {
 	$(".admin_screen").fadeIn();
 	$(".start_lesson").fadeOut();
 	$("#sidebar-wrapper").fadeOut();
+	goBackToPools();
 	$("#wrapper").fadeIn().css("padding-right", 0);
-	$(".paid_time_remaining").TimeCircles({ time: { Days: { show: true }, Hours: { show: true }, Seconds: { show: false } }});   
+   $(".paid_time_remaining").TimeCircles({start: true, // determines whether or not TimeCircles should start immediately.
+refresh_interval: 0.1, // determines how frequently TimeCircles is updated.
+count_past_zero: true, // This option is only really useful for when counting down. What it does is either give you the option to stop the timer, or start counting up after you've hit the pred$
+circle_bg_color: "#60686F", // determines the color of the background circle.
+use_background: true, // sets whether any background circle should be drawn at all.
+fg_width: 0.1, //  sets the width of the foreground circle.
+bg_width: 1.2, // sets the width of the backgroundground circle.
+time: { //  a group of options that allows you to control the options of each time unit independently.
+Days: {
+show: true,
+text: "Days",
+color: "#FC6"
+},
+Hours: {
+show: true,
+text: "Hours",
+color: "#9CF"
+},
+Minutes: {
+show: true,
+text: "Minutes",
+color: "#BFB"
+},
+Seconds: {
+show: false,
+}
+}
+});
+$(".paid_time_remaining").stop();
  });
-
+}
+function adminButton2() {
+    $(".admin_button .btn-danger").click(function() {
+        $(".admin_screen").fadeIn();
+        $(".end_lesson").fadeOut();
+        $("#sidebar-wrapper").fadeOut();
+        goBackToPools();
+        $("#wrapper").fadeIn().css("padding-right", 0);
+        $(".paid_time_remaining").TimeCircles({start: true, // determines whether or not TimeCircles should start immediately.
+refresh_interval: 0.1, // determines how frequently TimeCircles is updated.
+count_past_zero: true, // This option is only really useful for when counting down. What it does is either give you the option to stop the timer, or start counting up after you've hit the predefined date (or your stopwatch hits zero).
+circle_bg_color: "#60686F", // determines the color of the background circle.
+use_background: true, // sets whether any background circle should be drawn at all.
+fg_width: 0.1, //  sets the width of the foreground circle.
+bg_width: 1.2, // sets the width of the backgroundground circle.
+time: { //  a group of options that allows you to control the options of each time unit independently.
+Days: {
+show: true,
+text: "Days",
+color: "#FC6"
+},
+Hours: {
+show: true,
+text: "Hours",
+color: "#9CF"
+},
+Minutes: {
+show: true,
+text: "Minutes",
+color: "#BFB"
+},
+Seconds: {
+show: false,
+}
+}
+});
+ });
+}
 
   addSubtract();
   showComment();
@@ -58,8 +144,8 @@ $(".start_lesson").submit(function( event ) {
    endLesson();
    goBackToPools();
    giveMe30();
-   databaseRestart();
-  }
+   adminButton2(); 
+ }
    });
   }
  });
@@ -90,14 +176,14 @@ function showRestForm(){
 }
 
 function goBackToPools(){
-$(".gobacktopools b").click( function (){
+$(".gobacktopools").click( function (){
 location.reload();
 });
 }
 
 function showMeTheLesson() {
-  $(".btn-success a").click(function(){
-    var pool=$(this).text();
+  $(".btn-success").click(function(){
+    var pool=$(this).find("a").text();
     var user_id = $(".user_id").val();
     var lesson_id =$(this).find("#lesson_id").val();
   $.ajax({
@@ -109,14 +195,14 @@ function showMeTheLesson() {
     $(".holder").html(data);
         timeCircles();
         endLesson();
-	goBackToPools();  
+	goBackToPools();
+	menuToggle();
 	giveMe30();
-	showComment();
+	adminButton2();
    }
   });
   });
 }
-
 function timeCircles(){
 $("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: true }, count_past_zero: false }});
    $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
@@ -133,7 +219,6 @@ function endLesson(){
      success:function(data){
      showComment();
         location.reload();
- startLesson();
         }
      });
     }); 
@@ -148,17 +233,15 @@ function giveMe30(){
      url:"ending.php",
      data:{action:give, pool_ref: pool_ref},
      success:function(data){
-     showComment();
- 	startLesson();
-     alert(data);
+	location.reload();
         }
      });
     });
 }
 
 var speed = 700;
-var times = 20;
-var loop = setInterval(showComment, 15000);
+var times = 40;
+var loop = setInterval(showComment, 8000);
 
   function showComment(){
 times--;

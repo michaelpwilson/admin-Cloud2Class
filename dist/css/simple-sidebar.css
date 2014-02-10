@@ -1,3 +1,30 @@
+@media(max-width:798px){
+.navbar-fixed-bottom{
+display:none;
+}
+}
+
+
+@media(max-width:990px){
+.navey h1{
+top:-10px;
+font-size:40px;
+}
+#siteseal{
+display:none;
+}
+.trademark{
+display:none;
+}
+}
+.minus-figure {
+color: rgb(95, 95, 95);
+font-size:75px;
+float:left;
+text-shadow:4px 4px darkgrey;
+margin-left:25px;
+margin-top:61px;
+}
 .admin_button {
 background:#d43f3a;
 margin:9px;
@@ -26,9 +53,10 @@ margin-top:75%;
 margin-left:20%;
 min-width:152px;
 min-height:140px;
+opacity:0.9;
 }
 .end_lesson h3{
-font-size:28px;
+font-size:25px;
 }
 form h3{
 color:#5cb85c;
@@ -63,10 +91,10 @@ border:0;
 background-color:darkgreen;
 }
 .navbar-fixed-bottom{
-background-color:#47a447;
+background-color:#5cb85c;
 }
 .navbar{
-background-color:#47a447;
+background-color:#5cb85c;
 }
 .navbar-inverse .navbar-nav > li > a {
 color:white;
@@ -97,9 +125,19 @@ width:69%;
 text-align:center;
 margin-left:15%;
 background:#fff;
+margin-top:-20px;
 .inset {
   padding: 15px;
 }
+}
+.navey h1 {
+position: absolute;
+top: -16px;
+text-shadow: 2px 2px #000;
+opacity: 0.9;
+color: whitesmoke;
+left: -162px;
+font-size: 50px;
 }
 #wrapper {
   padding-right: 293px;
@@ -111,7 +149,7 @@ background:#fff;
   right: 293px;
   width: 293px;
   position: fixed;
-  height: 100%;
+  height: 82.5%;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1000;
@@ -216,6 +254,7 @@ background:#fff;
 
 #sidebar-wrapper {
   right: 0;
+  min-height: 92.5%;
 }
 
 #wrapper.active {

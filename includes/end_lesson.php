@@ -16,16 +16,19 @@ $shell_user = $row[5];
 $shell_pass = $row[6];
 $pool_ref=$_POST['pool_ref'];
 print "<input type=\"hidden\" id=\"pool_ref\" value=\"$pool_ref\"/>";
-print "<h2><a href=\"#\" class=\"gobacktopools\"><b style=\"float:left;\" class=\"glyphicon glyphicon-arrow-left\"></b></a>Lesson in progress (<b>$pool_ref</b>)";
+?>
+<ul class="pager">
+  <li class="previous"><a href="#" class="gobacktopools">&larr; Go Back</a></li>
+  <li class="next"><a href="#" id="menu-toggle">View Instances &rarr;</a></li>
+</ul>
+<?php
+print "<h2>Lesson in progress (<b>$pool_ref</b>)";
 $me = (int)$_POST['user_id'];
 $owner = (int)$row[0];
-?>
-<a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
-<hr>
-<?php
-print "<code>URL is: <a target=\"_blank\" href=\"https://$pool_ref.cloud2class.com\">https://$pool_ref.cloud2class.com</a></code>";
-print "<br><code style='left-margin: 30%;'>username is: $shell_user</code>";
-print "<br><code>password is: $shell_pass</code>"; 
+print "<hr><div class=\"bs-callout bs-callout-info\">";
+print "<p class=\"lead\">URL is: <a target=\"_blank\" href=\"https://$pool_ref.cloud2class.com\">https://$pool_ref.cloud2class.com</a>";
+print "<br>username is: $shell_user";
+print "<br>password is: $shell_pass</p></div>"; 
 
 ?>
  <h3>Started At:<br> <?php echo date("H:i a", strtotime($started)); ?></h3>
@@ -42,7 +45,6 @@ $diff = $finished - $time_now;
 ?>   
 </h3>
 <div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } else { echo ""; } ?>" data-timer="<?php echo $diff; ?>" style="width:361px; height: 122px; margin-left:auto; margin-right:auto;"></div>
-</div>
 <?php
 if($owner == $me){
 ?>
@@ -56,6 +58,7 @@ if($diff > 0){
 }elseif($diff <= 0){
 }
 ?>
+</div>
 </div>
 <?php
 }

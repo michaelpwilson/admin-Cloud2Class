@@ -8,7 +8,7 @@ if (mysqli_connect_errno())
 }
 
 ?>
-<h1><a href="#" class="gobacktopools" style="display:none;"><b style="float:left;" class="glyphicon glyphicon-arrow-left"></b></a>Create a Lesson <a id="menu-toggle" href="#" class="btn btn-success"><i class="glyphicon glyphicon-align-right"></i></a></h1>
+<h1>Create a Lesson</h1>
 <hr>
 <div class="pool-buttons">
 <h3>choose a Class:</h3>

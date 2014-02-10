@@ -4,6 +4,7 @@
    $res = mysqli_query($link, $idq);
    $getid = mysqli_fetch_row($res);
    $user_id = (int)$getid[0];
+   $user_role = (int)$getid[3];
   ?>
   <!DOCTYPE html>
    <html lang="en">
@@ -18,46 +19,38 @@
     <link href="dist/css/TimeCircles.css" rel="stylesheet">
     <!-- Add custom CSS here -->
     <link href="dist/css/simple-sidebar.css" rel="stylesheet">
-    <link href="dist/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="dist/font-awesome/css/font-awesome.min.css" rel="stylesheet"> 
+    <link href="dist/css/docs.min.css" rel="stylesheet">
   </head>
  <body>
    <div style="border:0;" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-  <div class="container" style="width:100%;">
+  <div class="container" style="width:100%">
      <div class="navbar-header">
      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
      <span class="icon-bar"></span>
      <span class="icon-bar"></span>
      <span class="icon-bar"></span>
      </button>
-   <a class="navbar-brand" href="index.php">Cloud2Class</a>
+   <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-cloud" style="font-size:15px;"></i> Cloud2Class</a>
   </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-   <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">settings <b class="glyphicon glyphicon-wrench"></b></a>
-          <ul class="dropdown-menu">
-               <li><a class="change_password" href="#">Change Password</a></li>
-               <li><a href="settings.php">More Settings....</a></li>
-          </ul>
-          </li>
-   <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">help <b class="glyphicon glyphicon-info-sign"></b></a>
-         <ul class="dropdown-menu">
-          <li><a href="glyphicons.php">Help Page</a></li>
-         </ul>
-          </li>
-   <li class="admin_button"><a class="btn btn-danger btn-xs">admin</a></li>
-    </ul>
+<?php
+if($user_role == 2){
+?>   
+<li class="admin_button"><a class="btn btn-danger btn-xs">admin</a></li>
+<?php
+} else {
+echo "";
+}
+?>   
+ </ul>
 
     <ul class="nav navbar-nav navbar-right">
           <li id="fat-menu" class="dropdown">
       <input type="hidden" class="user_id" value="<?php echo $user_id; ?>"/>
       <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['user_name']; ?> <b class="glyphicon glyphicon-user"></b></a>
       <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Login Log</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Updates <span class="badge">1</span></a></li>
-         <li role="presentation"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Notifications <span class="badge">6</span></a></li>
-         <li role="presentation" class="divider"></li>
          <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?logout">logout</a></li>
       </ul>
       </li>
@@ -67,7 +60,6 @@
     </div>
 
     <div id="wrapper">
-
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
         <ul id="comment" class="sidebar-nav">
@@ -77,25 +69,46 @@
       <div id="page-content-wrapper">
         <!-- Keep all page content within the page-content inset div! -->
         <div class="page-content inset">
+<div class="example" data-date="2014-01-01 12:14:32"></div>
+<?php include "includes/admin.php"; ?>
        <div class="holder">
 	<?php include "includes/start_lesson.php"; ?>
 	 <?php include "includes/end_lesson.php"; ?>
-	<?php include "includes/admin.php"; ?>
        </div>
       <div id="instances-holder">
         </div>
       </div>
     </div>
   </div>
-  <div class="navbar-inverse  navbar-fixed-bottom navbar-ex1-collapse">
+<nav class="navbar navbar-inverse navbar-fixed-bottom bottom-navy navbar-sam-main navey" role="navigation">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-mycol">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    </div>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse navbar-mycol">
     <ul class="nav navbar-nav navbar-right">
-      <li><a class="navbar-brand" href="index.php">Bright Process Ltd 2014 &copy;</a></li>
+ <li class="siteseal" style="display:none; margin-right:170px; margin-top:20px;"><span id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=AywkROD2O9vhtzzwflDU4VLXEb6GXv8TKsXF6eoVTX8bSfFbkxUR"></script><img style="cursor:pointer;cursor:hand" src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" onclick="verifySeal();"></span></li>
+              <li><h1>support</h1></li>
+<li class="email-us" style="margin-right:57px;"><a data-toggle="modal" data-target="#email-modal" href="">tel: +44 (0)208 8195 925<br>email: support@brightprocess.com</a></li>
+		<li><h1 style="left:-62px;">web</h1></li>               
+ 		<li style="padding-left:25px;"><a href="">www.brightprocess.com/c2c</a><a style="margin-top:-30px;" href="#">about: www.brightprocess.com/about-us</a></li>
+                <li style="margin-top:2px; margin-right:24px;"><img class="trademark" src="https://pbs.twimg.com/profile_images/3569761065/3e3f093c9102c0e09d06582f197b4956_bigger.png" width="64" height="64"></li>
     </ul>
-  </div>
+
+</div><!-- /.navbar-collapse -->
+</nav>
 <?php include "modals/init.php"; ?> 
-   </body>
-      <script src="dist/js/jquery.min.js"></script>
+    <script src="dist/js/jquery.min.js"></script>
       <script type="text/javascript" src="dist/js/process.js"></script>
       <script src="dist/js/TimeCircles.js"></script>
       <script src="dist/js/bootstrap.js"></script>
+	<script src="dist/js/tablesorter/jquery.tablesorter.js"></script>
+	<script src="dist/js/tablesorter/tables.js"></script>
+   </body>
    </html>
