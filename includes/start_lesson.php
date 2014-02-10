@@ -72,6 +72,12 @@ while($row = mysqli_fetch_row($res))
   <option value="60">60 minutes</option>
   <option value="90">90 minutes</option>
 </select>
+<h3>sudo to root:</h3>
+<input type="radio" name="complete" value="1" id="complete_yes" />
+ <label for="complete_yes">Yes</label>
+ <input type="radio" name="complete" value="0" id="complete_no" />
+ <label for="complete_no">No</label>
+<br>
 <input type="submit" name="lesson_go" value="Go!" style="margin-top:15px" class="btn-success btn btn-lg"/>
 </div>
 </form>

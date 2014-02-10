@@ -50,8 +50,8 @@ if($action=="showcomment"){
         $no_instances = $_POST['instances'];
         $lesson_duration = (int)$_POST['lesson_duration'];
         $user_id = $_POST['user_id'];
-
-        $sql = "INSERT INTO lesson (user_id, pool_id, lesson_start, duration, mounts, instance_type) VALUES ({$user_id}, {$pool_id}, NOW(), {$lesson_duration}, 'uploads:resources', '{$lesson_type}')";
+	$sudo = (int)$_POST['sudo'];
+        $sql = "INSERT INTO lesson (user_id, pool_id, lesson_start, duration, mounts, instance_type, sudo_root) VALUES ({$user_id}, {$pool_id}, NOW(), {$lesson_duration}, 'uploads:resources', '{$lesson_type}', {$sudo})";
 
         if (!mysqli_query($link,$sql))
         {

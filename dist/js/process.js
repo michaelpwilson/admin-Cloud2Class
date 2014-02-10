@@ -123,13 +123,14 @@ $(".start_lesson").submit(function( event ) {
     var type=$("#lesson_type").val();
     var instances=$("#example").val();
     var duration=$("#lesson_duration").val();
+    var sudo=$(".bottom-half input[type=radio]:checked").val();
     var action="addcomment";
     var user_login=$(".session_name").val();
     var user_id = $(".user_id").val();
    $.ajax({
     type:"post",
     url:"process.php",
-    data:{user_id:user_id, action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration},
+    data:{user_id:user_id, action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, sudo:sudo},
     success:function(data){
     var lesson_id = data;
   $.ajax({
