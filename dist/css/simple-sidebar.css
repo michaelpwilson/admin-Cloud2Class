@@ -1,3 +1,75 @@
+.countdown-container {
+position: relative;
+top: 50%;
+-webkit-transform: translateY(-50%);
+-moz-transform: translateY(-50%);
+transform: translateY(-50%);
+}
+.clock-item .inner {
+height: 0px;
+padding-bottom: 100%;
+position: relative;
+width: 100%;
+}
+.clock-canvas {
+background-color: rgba(255, 255, 255, .1);
+border-radius: 50%;
+height: 0px;
+padding-bottom: 100%;
+}
+.text {
+color: #fff;
+font-size: 30px;
+font-weight: bold;
+margin-top: -50px;
+position: absolute;
+top: 50%;
+text-align: center;
+text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+width: 100%;
+}
+.text .val {
+font-size: 50px;
+}
+.text .type-time {
+font-size: 20px;
+}
+ @media (min-width: 768px) and (max-width: 991px) {
+.clock-item {
+margin-bottom: 30px;
+}
+}
+ @media (max-width: 767px) {
+.clock-item {
+margin: 0px 30px 30px 30px;
+}
+}
+
+html{
+overflow-y:hidden;
+}
+.danger-border{
+border:1px solid #d9534f;
+}
+.sidebar-helper{
+background:#464646;
+height:50px;
+}
+.sidebar-helper .help-right{
+float:right;
+margin-top:9px;
+margin-right:8px;
+}
+.sidebar-helper li{
+display:inline;
+list-style:none;
+padding:1px;
+}
+.sidebar-helper li a {
+font-size:26px;
+opacity:0.3;
+cursor:crosshair;
+}
 .has-feedback .form-control-feedback {
 position: absolute;
 display: block;
@@ -24,8 +96,12 @@ margin-top:-17px;
 display:none;
 }
 }
-
-
+.navbar{
+margin-bottom:0;
+}
+.navey{
+margin-top:5px;
+}
 @media(max-width:990px){
 .navey h1{
 top:-10px;
@@ -70,7 +146,7 @@ display:none;
 font-size:24px;
 }
 .none_instance{
-margin-top:75%;
+margin-top:80%;
 margin-left:20%;
 min-width:152px;
 min-height:140px;
@@ -94,12 +170,6 @@ margin-left:0%;
 @media(max-width:850px){
 .active #page-content-wrapper{
 margin-left:20%;
-}
-}
-
-@media(max-height:900px){
-#sidebar-wrapper{
-max-height:85.3%;
 }
 }
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
@@ -163,20 +233,20 @@ font-size: 50px;
 #wrapper {
   padding-right: 293px;
   transition: all 0.4s ease 0s;
-  margin-top:50px;
 }
 #sidebar-wrapper {
  margin-right: -293px;
   right: 293px;
   width: 293px;
   position: fixed;
-  height: 82.5%;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1000;
   transition: all 0.4s ease 0s;
   color:white;
   background:#333;
+  margin-top:-50px;
 }
 #sidebar-wrapper li a{
 padding-top:7px;
@@ -191,11 +261,10 @@ width:50px;
   width: 100%;
   padding-bottom:50px;
   padding-top:20px;
+  height:90%;
 }
 
 .sidebar-nav {
-  position: absolute;
-  top: 0;
   width: 100%;
   list-style: none;
   margin: 0;
@@ -291,5 +360,8 @@ background:#fff;
 
 #menu-toggle {
   display: inline-block;
+}
+.bottom-navy .navbar-toggle {
+display:none;
 }
 }

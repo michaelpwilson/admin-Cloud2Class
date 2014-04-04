@@ -1,12 +1,113 @@
-  $(document).ready(function(){
-adminButton();
-var val = parseFloat($(".time_remaining").val());
-var parsedVal = 0;
+$.fn.pageMe = function(opts){
+    var $this = this,
+        defaults = {
+            perPage: 9,
+            showPrevNext: false,
+            hidePageNumbers: false
+        },
+        settings = $.extend(defaults, opts);
+    
+    var listElement = $this;
+    var perPage = settings.perPage; 
+    var children = listElement.children();
+    var pager = $('.pager');
+    
+    if (typeof settings.childSelector!="undefined") {
+        children = listElement.find(settings.childSelector);
+    }
+    
+    if (typeof settings.pagerSelector!="undefined") {
+        pager = $(settings.pagerSelector);
+    }
+    
+    var numItems = children.size();
+    var numPages = Math.ceil(numItems/perPage);
 
-if (!isNaN(val)){
-  parsedVal = val;
-  $(".paid_time_remaining").css("color", "#d9534f");
-}
+    pager.data("curr",0);
+    
+    if (settings.showPrevNext){
+        $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+    }
+    
+    var curr = 0;
+    while(numPages > curr && (settings.hidePageNumbers==false)){
+        $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
+        curr++;
+    }
+    
+    if (settings.showPrevNext){
+        $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+    }
+    
+    pager.find('.page_link:first').addClass('active');
+    pager.find('.prev_link').hide();
+    if (numPages<=1) {
+        pager.find('.next_link').hide();
+    }
+  	pager.children().eq(1).addClass("active");
+    
+    children.hide();
+    children.slice(0, perPage).show();
+    
+    pager.find('li .page_link').click(function(){
+        var clickedPage = $(this).html().valueOf()-1;
+        goTo(clickedPage,perPage);
+        return false;
+    });
+    pager.find('li .prev_link').click(function(){
+        previous();
+        return false;
+    });
+    pager.find('li .next_link').click(function(){
+        next();
+        return false;
+    });
+    
+    function previous(){
+        var goToPage = parseInt(pager.data("curr")) - 1;
+        goTo(goToPage);
+    }
+     
+    function next(){
+        goToPage = parseInt(pager.data("curr")) + 1;
+        goTo(goToPage);
+    }
+    
+    function goTo(page){
+        var startAt = page * perPage,
+            endOn = startAt + perPage;
+        
+        children.css('display','none').slice(startAt, endOn).show();
+        
+        if (page>=1) {
+            pager.find('.prev_link').show();
+        }
+        else {
+            pager.find('.prev_link').hide();
+        }
+        
+        if (page<(numPages-1)) {
+            pager.find('.next_link').show();
+        }
+        else {
+            pager.find('.next_link').hide();
+        }
+        
+        pager.data("curr",page);
+      	pager.children().removeClass("active");
+        pager.children().eq(page+1).addClass("active");
+    
+    }
+};
+  $(document).ready(function(){
+
+   adminButton();
+   var val = parseFloat($(".time_remaining").val());
+   var parsedVal = 0;
+   if (!isNaN(val)){
+   parsedVal = val;
+   $(".paid_time_remaining").css("color", "#d9534f");
+   }
 
 
 
@@ -53,22 +154,24 @@ function menuToggle(){
         $("#password-modal h4").text("change password for " + usr);
 	$("#password-modal .user").val(usr);
     });
-
 function adminButton(){
     $(".admin_button .btn-danger").click(function() {
 	$(".admin_screen").fadeIn();
 	$(".start_lesson").fadeOut();
+	$('#lessons').pageMe({pagerSelector:'#lessonPagin',showPrevNext:true,hidePageNumbers:false});
 	$("#sidebar-wrapper").fadeOut();
 	goBackToPools();
+	$("html").css("overflow-y", "auto");
 	$("#wrapper").fadeIn().css("padding-right", 0);
-   $(".paid_time_remaining").TimeCircles({start: true, // determines whether or not TimeCircles should start immediately.
-refresh_interval: 0.1, // determines how frequently TimeCircles is updated.
-count_past_zero: true, // This option is only really useful for when counting down. What it does is either give you the option to stop the timer, or start counting up after you've hit the pred$
-circle_bg_color: "#60686F", // determines the color of the background circle.
-use_background: true, // sets whether any background circle should be drawn at all.
-fg_width: 0.1, //  sets the width of the foreground circle.
-bg_width: 1.2, // sets the width of the backgroundground circle.
-time: { //  a group of options that allows you to control the options of each time unit independently.
+        $(".my_time").fadeIn();
+   $(".paid_time_remaining").TimeCircles({start: true,
+refresh_interval: 0.1,
+count_past_zero: true,
+circle_bg_color: "#60686F", 
+use_background: true, 
+fg_width: 0.1, 
+bg_width: 1.2, 
+time: {
 Days: {
 show: true,
 text: "Days",
@@ -85,11 +188,10 @@ text: "Minutes",
 color: "#BFB"
 },
 Seconds: {
-show: false,
+show: true,
 }
 }
 });
-$(".paid_time_remaining").stop();
  });
 }
 function adminButton2() {
@@ -136,7 +238,7 @@ show: false,
 startLesson();
 
 function startLesson(){  
-$(".start_lesson").submit(function( event ) {
+    $(".start_lesson").submit(function( event ) {
     // Stop form from submitting normally
     event.preventDefault();
     // Get some values from elements on the page:
@@ -148,7 +250,7 @@ $(".start_lesson").submit(function( event ) {
     var action="addcomment";
     var user_login=$(".session_name").val();
     var user_id = $(".user_id").val();
-   $.ajax({
+    $.ajax({
     type:"post",
     url:"process.php",
     data:{user_id:user_id, action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, sudo:sudo},
@@ -173,18 +275,31 @@ $(".start_lesson").submit(function( event ) {
  });
  });
 }
-
 function addSubtract(){
-
-  var input = document.getElementById('example');
-
-  document.getElementById('add').onclick = function(){
+$('#example').keyup(function(e){
+    if(e.keyCode == 8){
+    $('#example').val("0");
+    $("#subtract").css("display", "none");
+    }
+    });
+  $("#example").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $(".start_lesson .bs-callout").show().delay(5000).fadeOut("slow");
+	$("#example").addClass("danger-border");
+	$(".computers").css("color", "#D9534F");
+	$("#example").val("0");        
+       return false;
+    }
+    });
+    var input = document.getElementById('example');
+    document.getElementById('add').onclick = function(){
     input.value = parseInt(input.value, 10) +1
     }
-  document.getElementById('subtract').onclick = function(){
+    document.getElementById('subtract').onclick = function(){
     input.value = parseInt(input.value, 10) -1
     }
-
 }
 
 function showRestForm(){
@@ -193,6 +308,7 @@ function showRestForm(){
    $(".pool-buttons").fadeOut();
    $(".bottom-half").fadeIn();
    $(".gobacktopools").fadeIn();
+   $(".bottom-navy").css("margin-top", "-37px");
   goBackToPools();
   });
 }
@@ -216,6 +332,7 @@ function showMeTheLesson() {
     showComment();
     $(".holder").html(data);
         timeCircles();
+	$('.countdown').final_countdown();
         endLesson();
 	goBackToPools();
 	menuToggle();

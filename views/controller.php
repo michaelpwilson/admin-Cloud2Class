@@ -23,7 +23,8 @@
     <link href="dist/css/docs.min.css" rel="stylesheet">
   </head>
  <body>
-   <div style="border:0;" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+<div id="wrapper">
+   <div style="border:0; border-radius:0px; moz-border-radius:0px" class="navbar navbar-inverse" role="navigation">
   <div class="container" style="width:100%">
      <div class="navbar-header">
      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -58,19 +59,29 @@ echo "";
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </div>
-
-    <div id="wrapper">
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
+	<div class="sidebar-helper">
+	<ul class="help-right">
+	<li><a href="#"><b class="glyphicon glyphicon-tag"></b></a></li>
+	<li><a href="#"><b class="glyphicon glyphicon-refresh"></b></a></li>
+	</ul>
+	</div>
         <ul id="comment" class="sidebar-nav">
         </ul>
       </div>
       <!-- Page content -->
-      <div id="page-content-wrapper">
+      <div id="page-content-wrapper" style="min-height:556px;">
         <!-- Keep all page content within the page-content inset div! -->
         <div class="page-content inset">
 <div class="example" data-date="2014-01-01 12:14:32"></div>
-<?php include "includes/admin.php"; ?>
+<?php 
+if($user_role == 2){
+include "includes/admin.php"; 
+} else {
+// echo "user role";
+}
+?>
        <div class="holder">
 	<?php include "includes/start_lesson.php"; ?>
 	 <?php include "includes/end_lesson.php"; ?>
@@ -79,8 +90,7 @@ echo "";
         </div>
       </div>
     </div>
-  </div>
-<nav class="navbar navbar-inverse navbar-fixed-bottom bottom-navy navbar-sam-main navey" role="navigation">
+<nav class="navbar navbar-inverse bottom-navy navbar-sam-main navey" role="navigation" style="border:0; border-radius:0; moz-border-radius:0">
 <!-- Brand and toggle get grouped for better mobile display -->
 <div class="navbar-header">
   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-mycol">
@@ -104,6 +114,7 @@ echo "";
 
 </div><!-- /.navbar-collapse -->
 </nav>
+</div>
 <?php include "modals/init.php"; ?> 
     <script src="dist/js/jquery.min.js"></script>
       <script type="text/javascript" src="dist/js/process.js"></script>
@@ -111,5 +122,7 @@ echo "";
       <script src="dist/js/bootstrap.js"></script>
 	<script src="dist/js/tablesorter/jquery.tablesorter.js"></script>
 	<script src="dist/js/tablesorter/tables.js"></script>
+	<script type="text/javascript" src="dist/js/kinetic.js"></script>
+	<script type="text/javascript" src="dist/js/jquery.final-countdown.js"></script>   
    </body>
    </html>

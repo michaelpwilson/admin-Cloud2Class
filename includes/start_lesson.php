@@ -1,15 +1,12 @@
 <form action="/" style="" method="post" class="start_lesson">
 <?php
-
-$link= mysqli_connect("cpd-db","cpd","dkfj55.1","cpd");
-if (mysqli_connect_errno())
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
+require("config/edb.php");
 ?>
 <h1>Start a Lesson</h1>
 <hr>
+<div class="bs-callout bs-callout-danger" style="display:none">
+<h4>You cannot use any characters in the number of computers field</h4>
+</div>
 <div class="pool-buttons">
 <h3>choose a Class:</h3>
 <?php
@@ -69,11 +66,10 @@ $pool_max=mysqli_fetch_row($res);
 
 ?>
 </select> 
-<h3>number of computers:</h3>
-<a href="#"><i class="glyphicon glyphicon-chevron-left" id="subtract"></i></a><input style="border:0; width:30px; font-size:28px;" id="example" name="instances" type="text" value="7"/><a href="#"><i id="add" class="glyphicon glyphicon-chevron-right"></i></a> (max  
-<?php
-print "$pool_max[0])";
-?>
+<h3 class="computers">number of computers:</h3>
+<a href="#"><i class="glyphicon glyphicon-chevron-left" id="subtract"></i></a><input style="width:40px; font-size:28px;" id="example" name="instances" type="text" value="7"/><a href="#"><i id="add" class="glyphicon glyphicon-chevron-right"></i></a>
+<br>
+<b>(max: <?php echo (int)$pool_max[0]; ?>)</b>
 <h3>duration of lesson:</h3>
 <select name="lesson_duration" id="lesson_duration" class="lesson-dropdown form-control">
   <option value="30">30 minutes</option>

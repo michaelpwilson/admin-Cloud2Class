@@ -6,7 +6,8 @@ $myorg = (int)$result[0];
 ?>
 <h2 style="text-decoration:underline;">Time Remaining</h2>
 <?php
-    $query = mysqli_query($link, "select (o.sub_allowance-sum(l.duration)) as rate from lesson l, organization o, user u where l.user_id=u.user_id and u.org_id=o.org_id and u.user_id=". $user_id ."");
+#    $query = mysqli_query($link, "select (o.sub_allowance-sum(l.duration)) as rate from lesson l, organization o, user u where l.user_id=u.user_id and u.org_id=o.org_id and u.user_id=". $user_id ."");
+    $query = mysqli_query($link, "select (o.sub_allowance - coalesce(sum(l.duration),0)) from lesson l, pool p, organization o, user u where l.pool_id=p.pool_id and o.org_id=p.org_id and o.org_id=u.org_id and u.user_id=". $user_id ."");
         $fetch = mysqli_fetch_row($query);
         $fetchy = (int)$fetch[0];
 if($fetchy <= 0){
@@ -20,6 +21,18 @@ if($fetchy <= 0){
 else{
  echo "";
 }
+
+$minutes = $fetchy;
+//
+// Assuming that your minutes value is $minutes
+//
+$d = floor ($minutes / 1440);
+$h = floor (($minutes - $d * 1440) / 60);
+$m = $minutes - ($d * 1440) - ($h * 60);
+//
+// Then you can output it like so...
+//
+echo "{$minutes}min converts to {$d}d {$h}h {$m}m";
 
 ?>
 <div style="width: 658px; height: 244px; margin-left: auto; margin-right: auto;">
@@ -43,10 +56,9 @@ else{
 </form>
 <a href="mailto:support@brightprocess.com?Subject=Cloud2Class%20Account%20Request" class="btn btn-success">Make this Live!</a> (Requires 24hours)
 <hr>
-<h2 style="text-decoration:underline;">Last 10 Classes</h2>
-<div style="height:340px">
+<div>
 <div class="table-responsive">
-              <table class="table table-bordered table-hover table-striped tablesorter">
+              <table class="table table-hover">
                 <thead>
                   <tr>
                     <th class="header">Launched By <i class="fa fa-sort"></i></th>
@@ -55,9 +67,9 @@ else{
                     <th class="header">Duration <i class="fa fa-sort"></i></th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="lessons">
  		  <?php
-$lesn = mysqli_query($link, "select * from lesson l, user u where l.user_id=u.user_id and u.org_id=" . $myorg . " order by l.lesson_start desc limit 10");
+$lesn = mysqli_query($link, "select * from lesson l, user u where l.user_id=u.user_id and u.org_id=" . $myorg);
 	while($lesson = mysqli_fetch_row($lesn)){
 $usr = mysqli_query($link, "select user_login from user where user_id = {$lesson[0]}");
 $usr_lgn = mysqli_fetch_row($usr);
@@ -67,7 +79,7 @@ $plref = mysqli_fetch_row($pool);
 		<tr>
                     <td><?php echo $usr_lgn[0]; ?></td>
                     <td><?php echo $plref[0]; ?></td>
-                    <td><?php echo date("H:ia - d M Y", strtotime($lesson[2])); ?></td>
+                    <td><?php echo date("M d Y H:ia", strtotime($lesson[2])); ?></td>
                     <td><?php echo $lesson[3]; ?></td>
                   </tr>
 		<?php
@@ -75,6 +87,7 @@ $plref = mysqli_fetch_row($pool);
 		?>
                 </tbody>
               </table>
+	 	<ul class="pagination pagination-lg pager" id="lessonPagin"></ul>
 </div>
 </div>
 <hr>
@@ -93,7 +106,7 @@ $plref = mysqli_fetch_row($pool);
                 </thead>
                 <tbody>
 <?php
-$rsvm = mysqli_query($link, "select * from user where org_id = 2");
+$rsvm = mysqli_query($link, "select u1.* from user u1, user u2 where u1.org_id=u2.org_id and u2.user_id=$user_id");
 while($row = mysqli_fetch_row($rsvm)){
 $usr_lgn = $row[1];
 $fre_nme = $row[4];
