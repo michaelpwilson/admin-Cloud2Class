@@ -1,50 +1,11 @@
-.countdown-container {
-position: relative;
-top: 50%;
--webkit-transform: translateY(-50%);
--moz-transform: translateY(-50%);
-transform: translateY(-50%);
+.admin_screen h2{
+text-align: left;
+text-transform: uppercase;
+color: #C4C4C4;
 }
-.clock-item .inner {
-height: 0px;
-padding-bottom: 100%;
-position: relative;
-width: 100%;
+.end_lesson .bs-callout {
+padding:13px;
 }
-.clock-canvas {
-background-color: rgba(255, 255, 255, .1);
-border-radius: 50%;
-height: 0px;
-padding-bottom: 100%;
-}
-.text {
-color: #fff;
-font-size: 30px;
-font-weight: bold;
-margin-top: -50px;
-position: absolute;
-top: 50%;
-text-align: center;
-text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-width: 100%;
-}
-.text .val {
-font-size: 50px;
-}
-.text .type-time {
-font-size: 20px;
-}
- @media (min-width: 768px) and (max-width: 991px) {
-.clock-item {
-margin-bottom: 30px;
-}
-}
- @media (max-width: 767px) {
-.clock-item {
-margin: 0px 30px 30px 30px;
-}
-}
-
 html{
 overflow-y:hidden;
 }
@@ -54,6 +15,10 @@ border:1px solid #d9534f;
 .sidebar-helper{
 background:#464646;
 height:50px;
+text-align:right;
+padding-top:15px;
+padding-right:10px;
+font-style:italic;
 }
 .sidebar-helper .help-right{
 float:right;
@@ -143,7 +108,7 @@ margin-bottom: 15px;
 display:none;
 }
 .end_lesson code{
-font-size:24px;
+font-size:20px;
 }
 .none_instance{
 margin-top:80%;
@@ -153,7 +118,7 @@ min-height:140px;
 opacity:0.9;
 }
 .end_lesson h3{
-font-size:25px;
+font-size:22px;
 }
 form h3{
 color:#5cb85c;

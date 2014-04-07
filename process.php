@@ -14,10 +14,15 @@
       $show=mysqli_query($link, "Select * from instances where pool_ref = '" . $lesson_pool . "' order by instance_state desc");
       // count the amount of rows
       $row_cnt = mysqli_num_rows($show);
-
-        // if the row count is less than or equal to 1
+      echo '<div class="sidebar-helper"><text class="amount_instances" style="display:';
+      if($row_cnt <= 0){ 
+      echo "none"; 
+      } else {
+	echo "block";
+      }
+      echo '">' . $row_cnt  . ' instances</text></div>';
+        // if the row count is more than or equal to 1
         if($row_cnt >= 1){
-
           // loop through all of our instances
           while($row = mysqli_fetch_array($show))
             {

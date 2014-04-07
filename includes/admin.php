@@ -4,7 +4,7 @@ $morg = mysqli_query($link, "SELECT org_id FROM user WHERE user_id=$user_id");
 $result = mysqli_fetch_row($morg);
 $myorg = (int)$result[0];
 ?>
-<h2 style="text-decoration:underline;">Time Remaining</h2>
+<h2><i class="glyphicon glyphicon-time"></i> Time Remaining</h2>
 <?php
 #    $query = mysqli_query($link, "select (o.sub_allowance-sum(l.duration)) as rate from lesson l, organization o, user u where l.user_id=u.user_id and u.org_id=o.org_id and u.user_id=". $user_id ."");
     $query = mysqli_query($link, "select (o.sub_allowance - coalesce(sum(l.duration),0)) from lesson l, pool p, organization o, user u where l.pool_id=p.pool_id and o.org_id=p.org_id and o.org_id=u.org_id and u.user_id=". $user_id ."");
@@ -21,19 +21,6 @@ if($fetchy <= 0){
 else{
  echo "";
 }
-
-$minutes = $fetchy;
-//
-// Assuming that your minutes value is $minutes
-//
-$d = floor ($minutes / 1440);
-$h = floor (($minutes - $d * 1440) / 60);
-$m = $minutes - ($d * 1440) - ($h * 60);
-//
-// Then you can output it like so...
-//
-echo "{$minutes}min converts to {$d}d {$h}h {$m}m";
-
 ?>
 <div style="width: 658px; height: 244px; margin-left: auto; margin-right: auto;">
 <input type="hidden" class="time_remaining" value="<?php echo $fetchy; ?>"/>
@@ -91,7 +78,7 @@ $plref = mysqli_fetch_row($pool);
 </div>
 </div>
 <hr>
-<h2 style="text-decoration:underline; margin-top:83px;">Users</h2>
+<h2 style="margin-top:83px;"><i class="glyphicon glyphicon-user"></i> Users</h2>
 <div style="height:340px">
 <div class="table-responsive">
               <table class="table table-hover table-striped tablesorter">

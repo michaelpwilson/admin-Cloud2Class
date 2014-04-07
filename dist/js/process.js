@@ -26,7 +26,7 @@ $.fn.pageMe = function(opts){
     pager.data("curr",0);
     
     if (settings.showPrevNext){
-        $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+        $('<li><a href="#" style="border:0" class="prev_link">«</a></li>').appendTo(pager);
     }
     
     var curr = 0;
@@ -36,7 +36,7 @@ $.fn.pageMe = function(opts){
     }
     
     if (settings.showPrevNext){
-        $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+        $('<li><a href="#" style="border:0" class="next_link">»</a></li>').appendTo(pager);
     }
     
     pager.find('.page_link:first').addClass('active');
@@ -100,7 +100,6 @@ $.fn.pageMe = function(opts){
     }
 };
   $(document).ready(function(){
-
    adminButton();
    var val = parseFloat($(".time_remaining").val());
    var parsedVal = 0;
@@ -160,7 +159,6 @@ function adminButton(){
 	$(".start_lesson").fadeOut();
 	$('#lessons').pageMe({pagerSelector:'#lessonPagin',showPrevNext:true,hidePageNumbers:false});
 	$("#sidebar-wrapper").fadeOut();
-	goBackToPools();
 	$("html").css("overflow-y", "auto");
 	$("#wrapper").fadeIn().css("padding-right", 0);
         $(".my_time").fadeIn();
@@ -188,27 +186,28 @@ text: "Minutes",
 color: "#BFB"
 },
 Seconds: {
-show: true,
+show: false,
 }
 }
 });
  });
 }
-function adminButton2() {
+function adminButton2(){
     $(".admin_button .btn-danger").click(function() {
         $(".admin_screen").fadeIn();
         $(".end_lesson").fadeOut();
         $("#sidebar-wrapper").fadeOut();
-        goBackToPools();
+        $("html").css("overflow-y", "auto");
         $("#wrapper").fadeIn().css("padding-right", 0);
-        $(".paid_time_remaining").TimeCircles({start: true, // determines whether or not TimeCircles should start immediately.
-refresh_interval: 0.1, // determines how frequently TimeCircles is updated.
-count_past_zero: true, // This option is only really useful for when counting down. What it does is either give you the option to stop the timer, or start counting up after you've hit the predefined date (or your stopwatch hits zero).
-circle_bg_color: "#60686F", // determines the color of the background circle.
-use_background: true, // sets whether any background circle should be drawn at all.
-fg_width: 0.1, //  sets the width of the foreground circle.
-bg_width: 1.2, // sets the width of the backgroundground circle.
-time: { //  a group of options that allows you to control the options of each time unit independently.
+        $(".my_time").fadeIn();
+   $(".paid_time_remaining").TimeCircles({start: true,
+refresh_interval: 0.1,
+count_past_zero: true,
+circle_bg_color: "#60686F",
+use_background: true,
+fg_width: 0.1,
+bg_width: 1.2,
+time: {
 Days: {
 show: true,
 text: "Days",
@@ -250,7 +249,10 @@ function startLesson(){
     var action="addcomment";
     var user_login=$(".session_name").val();
     var user_id = $(".user_id").val();
-    $.ajax({
+ if($instances <= 0){
+alert("you cannot launch a lesson with no instances");
+}
+ $.ajax({
     type:"post",
     url:"process.php",
     data:{user_id:user_id, action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, sudo:sudo},
@@ -299,6 +301,9 @@ $('#example').keyup(function(e){
     }
     document.getElementById('subtract').onclick = function(){
     input.value = parseInt(input.value, 10) -1
+    if($("#example").val() <= 0){
+    $("#subtract").css("display", "none");
+    }
     }
 }
 
@@ -321,6 +326,7 @@ location.reload();
 
 function showMeTheLesson() {
   $(".btn-success").click(function(){
+  $(".amount_instances").css("display","block");
     var pool=$(this).find("a").text();
     var user_id = $(".user_id").val();
     var lesson_id =$(this).find("#lesson_id").val();
@@ -332,7 +338,6 @@ function showMeTheLesson() {
     showComment();
     $(".holder").html(data);
         timeCircles();
-	$('.countdown').final_countdown();
         endLesson();
 	goBackToPools();
 	menuToggle();

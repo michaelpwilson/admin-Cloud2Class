@@ -61,12 +61,6 @@ echo "";
     </div>
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
-	<div class="sidebar-helper">
-	<ul class="help-right">
-	<li><a href="#"><b class="glyphicon glyphicon-tag"></b></a></li>
-	<li><a href="#"><b class="glyphicon glyphicon-refresh"></b></a></li>
-	</ul>
-	</div>
         <ul id="comment" class="sidebar-nav">
         </ul>
       </div>

@@ -1,5 +1,6 @@
 <div class="end_lesson">
 <?php
+date_default_timezone_set('Europe/London');
 $link= mysqli_connect("cpd-db","cpd","dkfj55.1","cpd");
 if (mysqli_connect_errno())
 {
@@ -32,8 +33,8 @@ print "<h2 style=\"margin-top:-15px\">Lesson in progress (<b>$pool_ref</b>)";
 $me = (int)$_POST['user_id'];
 $owner = (int)$row[0];
 print "<hr>";
-print "<code>URL is: <a target=\"_blank\" href=\"https://beta.cloud2class.com/bportal/$pool_ref/\">https://beta.cloud2class.com/bportal/$pool_ref/</a></code>";
-print "<br><code style='left-margin: 30%;'>username is: $shell_user</code>";
+print "<div class=\"bs-callout bs-callout-info\"><h4>URL is: <a target=\"_blank\" href=\"https://beta.cloud2class.com/bportal/$pool_ref/\">https://beta.cloud2class.com/bportal/$pool_ref/</a></h4></div>";
+print "<code style='left-margin: 30%;'>username is: $shell_user</code>";
 print "<br><code>password is: $shell_pass</code><br>"; 
 ?>
 </p>
@@ -45,27 +46,13 @@ $ttl = date("H:i a", $finished);
 echo $ttl;
 $current = date("h:i:s");
 $time_now = strtotime($current);
-// $diff = $finished - $time_now;
-$diff = $time_now - $finished;
-echo 'Time 1: '.date('H:i:s', $time_now).'<br>';
-echo 'Time 2: '.date('H:i:s', $finished).'<br>';
-
-if($diff){
-    echo 'Diff: '.date('h:i:s', $diff);
-}else{
-    echo 'No Diff.';
-}
-
+$diff = $finished - $time_now;
 ?>   
 </h3>
 <div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } else { echo ""; } ?>" data-timer="<?php echo $diff; ?>" style="width:361px; height: 122px; margin-left:auto; margin-right:auto;"></div>
-</div>
-
-</div>
 <?php
 if($owner == $me){
 ?>
-<br>
 <ul class="pager">
   <li><a id="giveme" href="#">give me 30 more minutes</a></li>
   <li><a id="fiveMore" href="#">5 more nodes</a></li>

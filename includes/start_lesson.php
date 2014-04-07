@@ -41,7 +41,7 @@ while($row = mysqli_fetch_row($pool_list))
     elseif($row_cnt == 0 | $row_cnt < 1 | $rowx[2] == "Shutting Down")
     {
         print "<div class=\"btn btn-primary\" style=\"min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px;\">";
-        print "<input type=\"radio\" value=\"$pool_ref\" id=\"pool\" name=\"pool\">$pool_ref</div><br>";
+        print "<b class=\"glyphicon glyphicon-new-window\"></b> <input type=\"radio\" value=\"$pool_ref\" id=\"pool\" name=\"pool\">$pool_ref</div><br>";
     }
 }
 
