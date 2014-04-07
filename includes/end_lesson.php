@@ -14,15 +14,21 @@ $rows = mysqli_fetch_row($resw);
 $pool_id = $rows[0];
 $pool_ref = $rows[1];
 if(isset($pool_id)){
-$q = "select user_id, pool_id, lesson_start, duration, login, password from lesson where pool_id = {$pool_id} AND lesson_id = {$_POST['lesson_id']}";
+$q = "select user_id, pool_id, lesson_start, duration, login, password, instance_type from lesson where pool_id = {$pool_id} AND lesson_id = {$_POST['lesson_id']}";
 $res = mysqli_query($link, $q);
 $row = mysqli_fetch_row($res);  
+$lesson_type = $row[6];
 $started = $row[2];
 $minutes = (int)$row[3];
 $shell_user = $row[4];
 $shell_pass = $row[5];
+$finished = strtotime("+".$minutes." minutes", strtotime($started));
+$hid_ttl = date('Y-m-d H:i:s', $finished);
+$ttl = date("H:i a", $finished);
 print "<input type=\"hidden\" id=\"pool_ref\" value=\"$pool_ref\"/>";
 print "<input type=\"hidden\" id=\"lesson_id\" value=\"$lesson_id\"/>";
+print "<input type=\"hidden\" id=\"ttl\" value=\"$hid_ttl\"/>";
+print "<input type=\"hidden\" id=\"lesson_type\" value=\"$lesson_type\"/>";
 ?>
 <ul class="pager">
   <li class="previous"><a href="#" class="gobacktopools">&larr; Go Back</a></li>
@@ -41,8 +47,6 @@ print "<br><code>password is: $shell_pass</code><br>";
  <h3>Started At:<br> <?php echo date("H:i a", strtotime($started)); ?></h3>
  <h3>Finishes At:<br>
 <?php
-$finished = strtotime("+".$minutes." minutes", strtotime($started));
-$ttl = date("H:i a", $finished); 
 echo $ttl;
 $current = date("h:i:s");
 $time_now = strtotime($current);

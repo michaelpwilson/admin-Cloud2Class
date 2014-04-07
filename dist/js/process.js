@@ -1,5 +1,5 @@
 $.fn.pageMe = function(opts){
-    var $this = this,
+   var $this = this,
         defaults = {
             perPage: 9,
             showPrevNext: false,
@@ -190,6 +190,10 @@ show: false,
 }
 }
 });
+setTimeout(function() {
+$(".paid_time_remaining").TimeCircles().stop();
+}, 1000);
+
  });
 }
 function adminButton2(){
@@ -228,6 +232,9 @@ show: false,
 }
 }
 });
+setTimeout(function() {
+$(".paid_time_remaining").TimeCircles().stop();
+}, 1000);
  });
 }
 
@@ -298,10 +305,10 @@ $('#example').keyup(function(e){
     var input = document.getElementById('example');
     document.getElementById('add').onclick = function(){
     input.value = parseInt(input.value, 10) +1
-    }
+     }
     document.getElementById('subtract').onclick = function(){
     input.value = parseInt(input.value, 10) -1
-    if($("#example").val() <= 0){
+    if($("#example").val() <= 1){
     $("#subtract").css("display", "none");
     }
     }
@@ -343,6 +350,7 @@ function showMeTheLesson() {
 	menuToggle();
 	giveMe30();
 	adminButton2();
+	giveFive();
    }
   });
   });
@@ -382,6 +390,25 @@ function giveMe30(){
      });
     });
 }
+
+function giveFive(){
+   $( "#fiveMore" ).click(function() {
+    var lesson_id = $("#lesson_id").val();
+    var lesson_type = $("#lesson_type").val();
+    var ttl = $("#ttl").val();
+    var gFive = "gfive";
+    var pool_ref = $("#pool_ref").val();
+   $.ajax({
+     type:"post",
+     url:"ending.php",
+     data:{action:gFive, lesson_id: lesson_id, ttl: ttl, lesson_type: lesson_type, pool_ref: pool_ref},
+     success:function(data){
+	alert("5 more instances added to your lesson");
+        }
+     });
+    });
+}
+
 
 var speed = 700;
 var times = 40;

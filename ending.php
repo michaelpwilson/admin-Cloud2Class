@@ -1,10 +1,9 @@
 <?php
 require_once("libraries/password_compatibility_library.php");
 $link = mysqli_connect("cpd-db", "cpd", "dkfj55.1", "cpd");
-#$pool_ref = $_POST['pool_ref'];
-$lesson_id = $_POST['lesson_id'];
+$pool_ref = $_POST['pool_ref'];
+$lesson_id = (int)$_POST['lesson_id'];
 #$minutes = (int)$row[3];
-var_dump($lesson_id);
 #$resa = mysqli_query($link, "SELECT pool_id FROM pool WHERE pool_ref = '{$pool_ref}'");
 #        $rw = mysqli_fetch_row($resa);
 #        $pool_id = (int)$rw[0];
@@ -24,5 +23,19 @@ mysqli_query($link,"UPDATE lesson SET duration=timestampdiff(MINUTE,lesson_start
 if($_POST['action'] == "give"){
 $query = mysqli_query($link,"UPDATE lesson SET duration = duration+30 WHERE lesson_id = {$lesson_id}");
 $query = mysqli_query($link,"UPDATE instances SET ttl = (ttl + interval 30 minute) WHERE lesson_id = {$lesson_id}");
+}
+
+if($_POST['action'] == "gfive"){
+$lesson_type = $_POST['lesson_type'];
+$ttl = $_POST['ttl'];
+$anuv = "insert into instances (instance_name, instance_state, instance_type, lesson_id, ttl, pool_ref) values('Unassigned', 'Requested', '" . $lesson_type  . "', " . $lesson_id  . ", '" . $ttl . "', '" . $pool_ref . "')";
+        // loop depending on the choosen amount of instances
+        for($i=0;$i<5;$i++)
+        {
+            if (!mysqli_query($link,$anuv))
+            {
+             	die('Error: ' . mysqli_error($link));
+            }
+	}
 }
 ?>

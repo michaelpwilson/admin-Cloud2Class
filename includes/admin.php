@@ -44,6 +44,7 @@ else{
 <a href="mailto:support@brightprocess.com?Subject=Cloud2Class%20Account%20Request" class="btn btn-success">Make this Live!</a> (Requires 24hours)
 <hr>
 <div>
+<h2 style="margin-top:83px;"><i class="glyphicon glyphicon-list-alt"></i> lessons</h2>
 <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
