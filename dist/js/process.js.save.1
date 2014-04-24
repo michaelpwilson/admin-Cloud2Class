@@ -5,7 +5,7 @@ $.fn.pageMe = function(opts){
             showPrevNext: false,
             hidePageNumbers: false
         },
-       settings = $.extend(defaults, opts);
+        settings = $.extend(defaults, opts);
     
     var listElement = $this;
     var perPage = settings.perPage; 
@@ -107,6 +107,8 @@ $.fn.pageMe = function(opts){
    parsedVal = val;
    $(".paid_time_remaining").css("color", "#d9534f");
    }
+
+
 
 showRestForm();
 showMeTheLesson();
@@ -235,11 +237,16 @@ $(".paid_time_remaining").TimeCircles().stop();
 }, 1000);
  });
 }
+
   addSubtract();
   showComment();
- function startLesson(){  
-    $(".start_lesson").submit(function(e) {
-    e.preventDefault();
+
+startLesson();
+
+function startLesson(){  
+    $(".start_lesson").submit(function( event ) {
+    // Stop form from submitting normally
+    event.preventDefault();
     // Get some values from elements on the page:
     var pool= $("input:radio[name ='pool']:checked").val();
     var type=$("#lesson_type").val();
@@ -249,17 +256,13 @@ $(".paid_time_remaining").TimeCircles().stop();
     var action="addcomment";
     var user_login=$(".session_name").val();
     var user_id = $(".user_id").val();
-alert(instances);
- $(':submit', this).click(function() {
-        return false;
-    });
  $.ajax({
     type:"post",
     url:"process.php",
     data:{user_id:user_id, action:action, pool:pool, lesson_type:type, instances:instances, lesson_duration:duration, sudo:sudo},
     success:function(data){
     var lesson_id = data;
-    $.ajax({
+  $.ajax({
     type:"post",
     url:"includes/end_lesson.php",
     data:{lesson_id: lesson_id, pool_ref: pool, user_id: user_id},
@@ -271,18 +274,17 @@ alert(instances);
    endLesson();
    goBackToPools();
    giveMe30();
-   adminButton2();
-   }
+   adminButton2(); 
+ }
    });
   }
  });
  });
 }
-
 function addSubtract(){
 $('#example').keyup(function(e){
     if(e.keyCode == 8){
-    $('#example').val("7");
+    $('#example').val("0");
     $("#subtract").css("display", "none");
     }
     });
@@ -293,7 +295,7 @@ $('#example').keyup(function(e){
         $(".start_lesson .bs-callout").show().delay(5000).fadeOut("slow");
 	$("#example").addClass("danger-border");
 	$(".computers").css("color", "#D9534F");
-	$("#example").val("7");        
+	$("#example").val("0");        
        return false;
     }
     });
@@ -317,8 +319,7 @@ function showRestForm(){
    $(".gobacktopools").fadeIn();
    $(".bottom-navy").css("margin-top", "-37px");
   goBackToPools();
-  startLesson(); 
- });
+  });
 }
 
 function goBackToPools(){
@@ -328,7 +329,7 @@ location.reload();
 }
 
 function showMeTheLesson() {
-  $(".lesson_on").click(function(){
+  $(".btn-success").click(function(){
   $(".amount_instances").css("display","block");
     var pool=$(this).find("a").text();
     var user_id = $(".user_id").val();

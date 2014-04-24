@@ -48,10 +48,10 @@ print "<br><code>password is: $shell_pass</code><br>";
  <h3>Finishes At:<br>
 <?php
 echo $ttl;
-$current = date("h:i:s");
+$current = date("H:i:s");
 $time_now = strtotime($current);
 $diff = $finished - $time_now;
-?>   
+?>
 </h3>
 <div id="CountDownTimer<?php if ($diff > 60) { echo "Hourly"; } else { echo ""; } ?>" data-timer="<?php echo $diff; ?>" style="width:361px; height: 122px; margin-left:auto; margin-right:auto;"></div>
 <?php

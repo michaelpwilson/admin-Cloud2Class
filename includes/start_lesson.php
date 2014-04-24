@@ -34,7 +34,7 @@ while($row = mysqli_fetch_row($pool_list))
         $current = date("H:i:s");
         $time_now = strtotime($current);
 
-        print "<div class=\"btn btn-success\" style=\"min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px; \">";
+        print "<div class=\"btn btn-success lesson_on\" style=\"min-width:100px; max-width:100px; text-align:left; font-size:20px; margin-top:20px; \">";
         print "<a style=\"color:white\" value=\"$pool_ref\">";
         print "<b class=\"glyphicon glyphicon-asterisk\" style=\"float:left; padding-right:23px; margin-top:3px;\"></b>$pool_ref<input type=\"hidden\" id=\"lesson_id\" value=\"{$lesson_id}\"/></a></div><br>";
     }

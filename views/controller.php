@@ -65,7 +65,7 @@ echo "";
         </ul>
       </div>
       <!-- Page content -->
-      <div id="page-content-wrapper" style="min-height:556px;">
+      <div id="page-content-wrapper">
         <!-- Keep all page content within the page-content inset div! -->
         <div class="page-content inset">
 <div class="example" data-date="2014-01-01 12:14:32"></div>

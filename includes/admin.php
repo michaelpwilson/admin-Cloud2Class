@@ -49,15 +49,15 @@ else{
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th class="header">Launched By <i class="fa fa-sort"></i></th>
-                    <th class="header">Pool <i class="fa fa-sort"></i></th>
-                    <th class="header">Lesson Start <i class="fa fa-sort"></i></th>
-                    <th class="header">Duration <i class="fa fa-sort"></i></th>
+                    <th class="header">Launched By</th>
+                    <th class="header">Pool</th>
+                    <th class="header">Started At</th>
+                    <th class="header">Duration</th>
                   </tr>
                 </thead>
                 <tbody id="lessons">
  		  <?php
-$lesn = mysqli_query($link, "select * from lesson l, user u where l.user_id=u.user_id and u.org_id=" . $myorg);
+$lesn = mysqli_query($link, "select * from lesson l, user u where l.user_id=u.user_id and u.org_id=" . $myorg . " ORDER BY lesson_start DESC");
 	while($lesson = mysqli_fetch_row($lesn)){
 $usr = mysqli_query($link, "select user_login from user where user_id = {$lesson[0]}");
 $usr_lgn = mysqli_fetch_row($usr);
@@ -67,7 +67,7 @@ $plref = mysqli_fetch_row($pool);
 		<tr>
                     <td><?php echo $usr_lgn[0]; ?></td>
                     <td><?php echo $plref[0]; ?></td>
-                    <td><?php echo date("M d Y H:ia", strtotime($lesson[2])); ?></td>
+                    <td><?php echo date("d/m/Y H:ia", strtotime($lesson[2])); ?></td>
                     <td><?php echo $lesson[3]; ?></td>
                   </tr>
 		<?php

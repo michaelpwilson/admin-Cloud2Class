@@ -1,7 +1,28 @@
+#end_lesson{
+background:#d43f3a;
+color:white;
+}
+#giveme{
+background:#5bc0de;
+color:white;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+#page-content-wrapper{
+min-height:530px;
+}
+}
+@-moz-document url-prefix() {
+#page-content-wrapper{
+min-height:553px;
+}
+}
 .admin_screen h2{
 text-align: left;
 text-transform: uppercase;
 color: #C4C4C4;
+}
+.admin_screen h2 i{
+font-size:23px;
 }
 .end_lesson .bs-callout {
 padding:13px;
