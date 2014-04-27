@@ -249,7 +249,6 @@ $(".paid_time_remaining").TimeCircles().stop();
     var action="addcomment";
     var user_login=$(".session_name").val();
     var user_id = $(".user_id").val();
-alert(instances);
  $(':submit', this).click(function() {
         return false;
     });
@@ -313,7 +312,7 @@ function showRestForm(){
   $('.btn-primary').click(function() {
    $( "#pool" ).prop( "checked", true );
    $(".pool-buttons").fadeOut();
-   $(".bottom-half").fadeIn();
+   $(".bottom-half").delay(650).fadeIn();
    $(".gobacktopools").fadeIn();
    $(".bottom-navy").css("margin-top", "-37px");
   goBackToPools();

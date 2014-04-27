@@ -71,7 +71,7 @@ color: #a94442;
 
 .minus-figure {
 position: absolute;
-top: 176px;
+top: 280px;
 left: 11%;
 }
 .holder{
@@ -105,8 +105,6 @@ color: rgb(95, 95, 95);
 font-size:75px;
 float:left;
 text-shadow:4px 4px darkgrey;
-margin-left:25px;
-margin-top:61px;
 }
 .admin_button {
 background:#d43f3a;
