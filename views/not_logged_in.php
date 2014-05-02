@@ -67,14 +67,4 @@ if ($login->messages) {
 ?>
 </form>
 </body>
-<script>
-$( document ).ready(function() {
-$('#login_input_username').blur(function()
-{
-      if( this.value ) {
-            $('.input-group span').addClass('green');
-      }
-});
-});
-</script>
 </html>

@@ -21,6 +21,7 @@
     <link href="dist/css/simple-sidebar.css" rel="stylesheet">
     <link href="dist/font-awesome/css/font-awesome.min.css" rel="stylesheet"> 
     <link href="dist/css/docs.min.css" rel="stylesheet">
+    <link href="dist/css/ladda.min.css" rel="stylesheet">
   </head>
  <body>
 <div id="wrapper">
@@ -116,7 +117,7 @@ include "includes/admin.php";
       <script src="dist/js/bootstrap.js"></script>
 	<script src="dist/js/tablesorter/jquery.tablesorter.js"></script>
 	<script src="dist/js/tablesorter/tables.js"></script>
-	<script type="text/javascript" src="dist/js/kinetic.js"></script>
-	<script type="text/javascript" src="dist/js/jquery.final-countdown.js"></script>   
+	<script type="text/javascript" src="dist/js/ladda.min.js"></script>
+	<script type="text/javascript" src="dist/js/spin.min.js"></script>   
    </body>
    </html>

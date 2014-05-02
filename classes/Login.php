@@ -98,18 +98,18 @@ class Login
                         $this->user_is_logged_in = true;
 
                     } else {
-                        $this->errors[] = '<div><div class="alert alert-success">Wrong password. Try again.</div></div>';
+                        $this->errors[] = '<div><div class="alert alert-success alert-dismissable">Wrong password. Try again.</div></div>';
                     }
                 } else {
-                    $this->errors[] = '<div><div class="alert alert-danger">This user does not exist.</div></div>';
+                    $this->errors[] = '<div><div class="alert alert-danger alert-dismissable">This user does not exist.</div></div>';
                 }
             } else {
-                $this->errors[] = '<div ><div class="alert alert-danger">Database connection problem.</diV></div>';
+                $this->errors[] = '<div ><div class="alert alert-danger alert-dismissable">Database connection problem.</diV></div>';
             }
         } elseif (empty($_POST['user_name'])) {
-            $this->errors[] = '<div><div class="alert alert-danger">Username field was empty.</div></div>';
+            $this->errors[] = '<div><div class="alert alert-danger alert-dismissable">Username field was empty.</div></div>';
         } elseif (empty($_POST['user_password'])) {
-            $this->errors[] = '<div><div class="alert alert-danger">Password field was empty.</div></div>';
+            $this->errors[] = '<div><div class="alert alert-danger alert-dismissable">Password field was empty.</div></div>';
         }
     }
     /**
@@ -120,7 +120,7 @@ class Login
         $_SESSION = array();
         session_destroy();
         $this->user_is_logged_in = false;
-        $this->messages[] = '<div><div class="alert alert-success">You have been logged out.</div></div>';
+        $this->messages[] = '<div><div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>You have been logged out.</div></div>';
 
     }
 

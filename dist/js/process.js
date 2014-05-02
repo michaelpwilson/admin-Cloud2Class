@@ -100,6 +100,27 @@ $.fn.pageMe = function(opts){
     }
 };
   $(document).ready(function(){
+  if( $(window).width() < 1056){
+    $(".navey").removeClass("navbar-fixed-bottom");
+    $(".navey").addClass("bottom-navy");
+    $("#sidebar-wrapper").css("height", "100%");
+   }else {
+    $(".navey").removeClass("bottom-navy");
+    $(".navey").addClass("navbar-fixed-bottom");
+    $("#sidebar-wrapper").css("height", "91%");
+   } 
+   $( window ).resize(function() {
+  if( $(window).width() < 1056){
+    $(".navey").removeClass("navbar-fixed-bottom");
+    $(".navey").addClass("bottom-navy");
+    $("#sidebar-wrapper").css("height", "100%");
+   }else {
+    $(".navey").removeClass("bottom-navy");
+    $(".navey").addClass("navbar-fixed-bottom");
+    $("#sidebar-wrapper").css("height", "91%");
+   } 
+
+   });
    adminButton();
    var val = parseFloat($(".time_remaining").val());
    var parsedVal = 0;
@@ -351,8 +372,16 @@ function showMeTheLesson() {
   });
 }
 function timeCircles(){
-$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: true }, count_past_zero: false }});
-   $("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }});
+$("#CountDownTimerHourly").TimeCircles({ time: { Days: { show: false }, Hours: { show: true }, count_past_zero: false }}).addListener(function(unit, amount, total){
+if(total == 0) {
+location.reload();
+}
+});
+$("#CountDownTimer").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, count_past_zero: false }}).addListener(function(unit, amount, total){
+if(total == 0) {
+location.reload();
+}
+});
 }
 
 function endLesson(){
