@@ -68,18 +68,17 @@
     } elseif($action=="addcomment")
     {
 	// the name of the pool we are launching a lesson on
-	$pool = $_POST['pool'];
+	$pool = mysqli_real_escape_string($link, $_POST['pool']);
         $resa = mysqli_query($link, "SELECT pool_id FROM pool WHERE pool_ref = '{$pool}'");
         $rw = mysqli_fetch_row($resa);
 	//get the pool id
-        $pool_id = (int)$rw[0];
-
+        $pool_id = intval($rw[0]);
 	// other variables passed through ajax
-        $lesson_type = $_POST['lesson_type'];
-        $no_instances = $_POST['instances'];
-        $lesson_duration = (int)$_POST['lesson_duration'];
-        $user_id = $_POST['user_id'];
-	$sudo = (int)$_POST['sudo'];
+        $lesson_type = mysqli_real_escape_string($link, $_POST['lesson_type']);
+        $no_instances = intval($_POST['instances']);
+        $lesson_duration = intval($_POST['lesson_duration']);
+        $user_id = intval($_POST['user_id']);
+	$sudo = intval($_POST['sudo']);
 	// large sql query for inserted into the lesson table
         $sql = "INSERT INTO lesson (user_id, pool_id, lesson_start, duration, mounts, instance_type, sudo_root) VALUES ({$user_id}, {$pool_id}, NOW(), {$lesson_duration}, 'uploads:resources', '{$lesson_type}', {$sudo})";
 
@@ -91,7 +90,7 @@
 	// the id of the inserted lesson
         $lesson_id = mysqli_insert_id($link);
         echo $lesson_id;
-
+        $lesson_id .= intval($lesson_id);
 	// now we insert into the instances table
         $anuv = "insert into instances (instance_name, instance_state, instance_type, lesson_id, ttl, pool_ref) values('Unassigned', 'Requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 60  . " SECOND, '{$pool}' )";
 
