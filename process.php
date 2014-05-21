@@ -90,7 +90,6 @@
 	// the id of the inserted lesson
         $lesson_id = mysqli_insert_id($link);
         echo $lesson_id;
-        $lesson_id .= intval($lesson_id);
 	// now we insert into the instances table
         $anuv = "insert into instances (instance_name, instance_state, instance_type, lesson_id, ttl, pool_ref) values('Unassigned', 'Requested', '" . $lesson_type  . "', " . $lesson_id  . ", now() + INTERVAL " . $lesson_duration * 60  . " SECOND, '{$pool}' )";
 

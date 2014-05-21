@@ -27,9 +27,6 @@ font-size:23px;
 .end_lesson .bs-callout {
 padding:13px;
 }
-html{
-overflow-y:hidden;
-}
 .danger-border{
 border:1px solid #d9534f;
 }

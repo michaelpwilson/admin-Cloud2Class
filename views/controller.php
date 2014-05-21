@@ -17,6 +17,7 @@
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
     <link href="dist/css/TimeCircles.css" rel="stylesheet">
+     <link href="dist/css/newness.css" rel="stylesheet">
     <!-- Add custom CSS here -->
     <link href="dist/css/simple-sidebar.css" rel="stylesheet">
     <link href="dist/font-awesome/css/font-awesome.min.css" rel="stylesheet"> 

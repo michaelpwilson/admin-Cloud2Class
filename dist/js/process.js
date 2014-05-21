@@ -100,27 +100,11 @@ $.fn.pageMe = function(opts){
     }
 };
   $(document).ready(function(){
-  if( $(window).width() < 1056){
-    $(".navey").removeClass("navbar-fixed-bottom");
-    $(".navey").addClass("bottom-navy");
-    $("#sidebar-wrapper").css("height", "100%");
-   }else {
-    $(".navey").removeClass("bottom-navy");
-    $(".navey").addClass("navbar-fixed-bottom");
-    $("#sidebar-wrapper").css("height", "91%");
-   } 
-   $( window ).resize(function() {
-  if( $(window).width() < 1056){
-    $(".navey").removeClass("navbar-fixed-bottom");
-    $(".navey").addClass("bottom-navy");
-    $("#sidebar-wrapper").css("height", "100%");
-   }else {
-    $(".navey").removeClass("bottom-navy");
-    $(".navey").addClass("navbar-fixed-bottom");
-    $("#sidebar-wrapper").css("height", "91%");
-   } 
+    $("#wrapper").height($(document - 200).height());
+    $(window).resize(function(){
+        $("#wrapper").height($(document - 200).height());
+    });
 
-   });
    adminButton();
    var val = parseFloat($(".time_remaining").val());
    var parsedVal = 0;
