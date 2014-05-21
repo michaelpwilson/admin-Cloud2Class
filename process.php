@@ -15,7 +15,7 @@
       // count the amount of rows
       $row_cnt = mysqli_num_rows($show);
       echo '<div class="sidebar-helper">
-      <text class="amount_instances" style="float:left; margin-left:10px; display:';
+      <text class="amount_instances" style="float:right; margin-left:10px; display:';
       if($row_cnt <= 0){ 
       echo "none"; 
       } else {
