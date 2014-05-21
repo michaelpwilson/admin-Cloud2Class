@@ -86,7 +86,9 @@ include "includes/admin.php";
         </div>
       </div>
     </div>
-<nav class="navbar navbar-inverse bottom-navy navbar-sam-main navey" role="navigation" style="border:0; border-radius:0; moz-border-radius:0">
+<div class="push"></div>
+</div>
+<nav class="navbar navbar-inverse bottom-navy navbar-fixed-bottom navbar-sam-main navbar-sam-main navey" role="navigation" style="margin-right: 293px; border:0; border-radius:0; moz-border-radius:0">
 <!-- Brand and toggle get grouped for better mobile display -->
 <div class="navbar-header">
   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-mycol">
@@ -98,7 +100,7 @@ include "includes/admin.php";
     </div>
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse navbar-mycol">
-    <ul class="nav navbar-nav navbar-right">
+   <ul class="nav navbar-nav navbar-right">
 <li class="siteseal" style="margin-right:170px; margin-top:20px;"><span id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=AywkROD2O9vhtzzwflDU4VLXEb6GXv8TKsXF6eoVTX8bSfFbkxUR"></script></span></li>
               <li><h1>support</h1></li>
 <li class="email-us" style="margin-right:57px;"><a href="mailto:support@brightprocess.com?Subject=Cloud2Class Support Request">tel: +44 (0)208 8195 925<br>email: support@brightprocess.com</a></li>
@@ -107,10 +109,8 @@ include "includes/admin.php";
                 <li style="margin-top:2px; margin-right:24px;"><img class="trademark" src="img/logo-trans.png" width="64" height="64"/></li>
 
     </ul>
-
 </div><!-- /.navbar-collapse -->
 </nav>
-</div>
 <?php include "modals/init.php"; ?> 
     <script src="dist/js/jquery.min.js"></script>
       <script type="text/javascript" src="dist/js/process.js"></script>

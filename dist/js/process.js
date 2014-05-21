@@ -100,11 +100,6 @@ $.fn.pageMe = function(opts){
     }
 };
   $(document).ready(function(){
-    $("#wrapper").height($(document - 200).height());
-    $(window).resize(function(){
-        $("#wrapper").height($(document - 200).height());
-    });
-
    adminButton();
    var val = parseFloat($(".time_remaining").val());
    var parsedVal = 0;
