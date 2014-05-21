@@ -406,7 +406,7 @@ function giveFive(){
      url:"ending.php",
      data:{action:gFive, lesson_id: lesson_id, ttl: ttl, lesson_type: lesson_type, pool_ref: pool_ref},
      success:function(data){
-	alert("5 more instances added to your lesson");
+	alert("5 more instances have been added to your lesson, please wait for them to appear in the right hand sidebar.");
         }
      });
     });
