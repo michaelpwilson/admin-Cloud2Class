@@ -158,6 +158,7 @@ function adminButton(){
 	$('#lessons').pageMe({pagerSelector:'#lessonPagin',showPrevNext:true,hidePageNumbers:false});
 	$("#sidebar-wrapper").fadeOut();
 	$("html").css("overflow-y", "auto");
+	$(".bottom-navy").fadeIn().css("width", "100%");
 	$("#wrapper").fadeIn().css("padding-right", 0);
         $(".my_time").fadeIn();
    $(".paid_time_remaining").TimeCircles({start: true,
@@ -241,7 +242,7 @@ $(".paid_time_remaining").TimeCircles().stop();
     $(".start_lesson").submit(function(e) {
     e.preventDefault();
     // Get some values from elements on the page:
-    var pool= $("input:radio[name ='pool']:checked").val();
+    var pool= $(this).attr("id");
     var type=$("#lesson_type").val();
     var instances=$("#example").val();
     var duration=$("#lesson_duration").val();
@@ -315,6 +316,7 @@ function showRestForm(){
    $(".bottom-half").delay(650).fadeIn();
    $(".gobacktopools").fadeIn();
    $(".bottom-navy").css("margin-top", "-37px");
+   $('.start_lesson').attr('id', $(this).find("input").val());
   goBackToPools();
   startLesson(); 
  });

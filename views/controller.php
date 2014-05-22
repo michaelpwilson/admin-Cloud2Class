@@ -47,7 +47,6 @@ if($user_role == 2){
 echo "";
 }
 ?>
-<li style="margin-top:9px;"><span id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=AywkROD2O9vhtzzwflDU4VLXEb6GXv8TKsXF6eoVTX8bSfFbkxUR"></script></span></li>
  </ul>
 
     <ul class="nav navbar-nav navbar-right">
@@ -74,14 +73,14 @@ echo "";
 <div class="example" data-date="2014-01-01 12:14:32"></div>
 <?php 
 if($user_role == 2){
-include "includes/admin.php"; 
+require "includes/admin.php"; 
 } else {
 // echo "user role";
 }
 ?>
        <div class="holder">
-	<?php include "includes/start_lesson.php"; ?>
-	 <?php include "includes/end_lesson.php"; ?>
+	<?php require "includes/start_lesson.php"; ?>
+	 <?php require "includes/end_lesson.php"; ?>
        </div>
       <div id="instances-holder">
         </div>
@@ -102,23 +101,22 @@ include "includes/admin.php";
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse navbar-mycol">
    <ul class="nav navbar-nav navbar-right">
+<li class="siteseal"><span id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=AywkROD2O9vhtzzwflDU4VLXEb6GXv8TKsXF6eoVTX8bSfFbkxUR"></script></span></li>
               <li><h1>support</h1></li>
 <li class="email-us"><a href="mailto:support@brightprocess.com?Subject=Cloud2Class Support Request">tel: +44 (0)208 8195 925<br>email: support@brightprocess.com</a></li>
                 <li><h1 style="left:-62px;">web</h1></li>
                 <li><a href="http://cloud2class.com" target="_blank">cloud2class.com</a><a style="margin-top:-30px;" target="_blank" href="http://www.brightprocess.com/about-us">www.brightprocess.com/about-us</a></li>
-                <li style="margin-top:2px; margin-right:24px;"><img class="trademark" src="img/logo-trans.png" width="64" height="64"/></li>
+                <li style="margin-top:2px; margin-right:24px;"><img class="trademark" src="img/logo-trans.png" width="47" height="47"/></li>
 
     </ul>
 </div><!-- /.navbar-collapse -->
 </nav>
-<?php include "modals/init.php"; ?> 
+<?php require "modals/init.php"; ?> 
     <script src="dist/js/jquery.min.js"></script>
       <script type="text/javascript" src="dist/js/process.js"></script>
       <script src="dist/js/TimeCircles.js"></script>
       <script src="dist/js/bootstrap.js"></script>
 	<script src="dist/js/tablesorter/jquery.tablesorter.js"></script>
 	<script src="dist/js/tablesorter/tables.js"></script>
-	<script type="text/javascript" src="dist/js/ladda.min.js"></script>
-	<script type="text/javascript" src="dist/js/spin.min.js"></script>   
    </body>
    </html>

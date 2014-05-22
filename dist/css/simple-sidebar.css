@@ -1,3 +1,7 @@
+.trademark {
+margin-top: 10px;
+margin-left: 3px;
+}
 #end_lesson{
 background:#d43f3a;
 color:white;
@@ -17,9 +21,10 @@ min-height:553px;
 }
 }
 .navey h1{
-margin-top: 15px;
+margin-top: 21px;
 color: white;
 text-shadow: 2px 2px 2px black;
+font-size:25px;
 }
 .admin_screen h2{
 text-align: left;
@@ -76,9 +81,6 @@ position: absolute;
 top: 280px;
 left: 11%;
 }
-.holder{
-margin-top:-17px;
-}
 @media(max-width:798px){
 .navbar-fixed-bottom{
 display:none;
@@ -90,15 +92,12 @@ margin-bottom:0;
 .navey{
 margin-top:5px;
 }
+.siteseal { margin-top:19px; margin-right:10px; }
 @media(max-width:990px){
-.navey h1{
-top:-10px;
-font-size:40px;
+#siteseal { display:none; }
+.trademark { display:none; }
 }
-.trademark{
-display:none;
-}
-}
+
 .minus-figure {
 color: rgb(95, 95, 95);
 font-size:75px;
@@ -172,6 +171,7 @@ background-color:#5cb85c;
 }
 .navbar-inverse .navbar-nav > li > a {
 color:white;
+font-size:11px;
 }
 .navbar-inverse .navbar-brand{
 color:white;
@@ -199,7 +199,6 @@ width:69%;
 text-align:center;
 margin-left:15%;
 background:#fff;
-margin-top:-20px;
 .inset {
   padding: 15px;
 }
