@@ -27,8 +27,7 @@
           // loop through all of our instances
           while($row = mysqli_fetch_array($show))
             {
-                echo '<li style="border-bottom:1px solid #eee;"><a href="#">';
-
+                echo '<li style="border-bottom:1px solid #eee;"><a class="instance" id="' . $row[node_key] . '">';
 		// if the instance is set to Ready
                 if($row[instance_state] == 'Ready')
                 {
@@ -56,7 +55,7 @@
                 }
 
 		// set the rest of the html
-                echo '<text style="font-weight:bold; padding-left:5px;">' . $row[instance_name] . '</text><text class="pull-right" id="instance_state" style="padding-right:15px; font-size:11px;">' . $row[instance_state] . '</text>';
+                echo '<text class="nodename" style="font-weight:bold; padding-left:5px;">' . $row[instance_name] . '</text><text class="pull-right" id="instance_state" style="padding-right:15px; font-size:11px;">' . $row[instance_state] . '</text>';
                 echo '<br><text style="font-size:11px; float:right; margin-right:5%; margin-top:-27px;">expires: ' . date("H:i", strtotime($row[ttl])) . '</text>';
                 echo '</a></li>';
             }

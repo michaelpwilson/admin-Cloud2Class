@@ -430,7 +430,34 @@ $.ajax({
     data: {action:showcomment, lesson_pool: lesson_pool},
     success:function(data){
      $("#comment").fadeIn().html(data);
- }
+    $(".instance").click(function(){
+    nodeKey = $(this).attr('id');
+    nodeName = $( '.nodename', $( this ) ).text();
+    direct = "https://cloud2class.com/direct/?" + nodeKey;
+    action = "https://cloud2class.com/action/?" + nodeKey;
+    if(nodeName != 'Unassigned') {
+    $("#node-modal").modal('show');
+    $("#node-modal .modal-title").text("Actions for " + nodeName);
+    $("#node-modal iframe").attr('src', direct);
+    $("#node-modal .shut-down").click(function(){
+    shutdownUrl = action + "&action=shutdown";
+    alert("shutdown url: " + shutdownUrl);
+    $( '#node-modal iframe' ).attr( 'src', function ( i, val ) { return val; });
+     });
+    $("#node-modal .log-off").click(function(){
+    logoffUrl = action + "&action=logoff";
+    alert("log off url: " + logoffUrl);
+    $( '#node-modal iframe' ).attr( 'src', function ( i, val ) { return val; });
+     });
+     $("#node-modal .reset-instance").click(function(){
+    resetUrl = action + "&action=reset";
+    alert("reset url: " + resetUrl);
+    $( '#node-modal iframe' ).attr( 'src', function ( i, val ) { return val; });
+     });
+   }
+
   });
+}
+});
  }
  });

@@ -5950,6 +5950,13 @@ button.close {
   overflow: auto;
   overflow-y: scroll;
 }
+@media (min-width: 800px){
+.modal-lg {
+width: 900px;
+margin: 0 auto;
+padding-top: 51px;
+}
+}
 
 .modal.fade .modal-dialog {
   -webkit-transform: translate(0, -25%);

@@ -58,7 +58,7 @@ $diff = $finished - $time_now;
 if($owner == $me){
 ?>
 <ul class="pager">
-  <li><a id="giveme" href="#">give me 30 more minutes</a></li>
+  <li><a id="giveme" href="#" data-toggle="tooltip" title="Some tooltip text!">give me 30 more minutes</a></li>
   <li><a id="fiveMore" href="#">5 more nodes</a></li>
   <li><a id="end_lesson" href="#">end lesson</a></li>
 </ul>

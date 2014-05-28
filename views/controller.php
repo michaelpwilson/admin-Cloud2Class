@@ -86,7 +86,6 @@ require "includes/admin.php";
         </div>
       </div>
     </div>
-<div class="push"></div>
 </div>
 <nav class="navbar navbar-inverse bottom-navy navbar-fixed-bottom navbar-sam-main navbar-sam-main navey" role="navigation" style="margin-right: 293px; border:0; border-radius:0; moz-border-radius:0">
 <!-- Brand and toggle get grouped for better mobile display -->
